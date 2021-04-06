@@ -7,7 +7,7 @@ function NavBar(){
     return(
 
     <>
-
+<Link to="/Messages">Messages</Link>
     </>
     )
 }
