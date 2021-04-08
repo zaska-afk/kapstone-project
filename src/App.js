@@ -2,8 +2,8 @@ import logo from './logo.svg';
 import './App.css';
 import NavBar from './components/navBar'
 import { Switch, Route } from 'react-router-dom'
-import MessageView from "./components/messageView"
-
+import Messages from "./components/Messages"
+import Homepage from "./components/Homepage"
 
 function App() {
   return (
@@ -11,7 +11,10 @@ function App() {
       <NavBar />
       <Switch>
         <Route path='/Messages'>
-          <MessageView />
+          <Messages />
+        </Route>
+        <Route path='/Homepage'>
+          <Homepage />
         </Route>
 
       </Switch>
