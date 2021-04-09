@@ -31,25 +31,31 @@ function HomeView() {
         <CardDeck className="home-deck">
           <Card className="card">
             <Card.Header className="center">
-              <h3>
-                <b>Movie Preferences</b>
-              </h3>
+              <LinkContainer to="/prefrences">
+                <h3>
+                  <b>Movie Preferences</b>
+                </h3>
+              </LinkContainer>
             </Card.Header>
             <Card.Body></Card.Body>
           </Card>
           <Card className="card">
             <Card.Header className="center">
-              <h3>
-                <b>Profile</b>
-              </h3>
+              <LinkContainer to="/profile">
+                <h3>
+                  <b>Profile</b>
+                </h3>
+              </LinkContainer>
             </Card.Header>
             <Card.Body></Card.Body>
           </Card>
           <Card className="card">
             <Card.Header className="center">
-              <h3>
-                <b>Movie Buddies</b>
-              </h3>
+              <LinkContainer to="/buddies">
+                <h3>
+                  <b>Movie Buddies</b>
+                </h3>
+              </LinkContainer>
             </Card.Header>
             <Card.Body></Card.Body>
           </Card>
@@ -67,9 +73,11 @@ function HomeView() {
           </Card>
           <Card className="card">
             <Card.Header className="center">
-              <h3>
-                <b>Upcoming Movies</b>
-              </h3>
+              <LinkContainer to="/upcoming">
+                <h3>
+                  <b>Upcoming Movies</b>
+                </h3>
+              </LinkContainer>
             </Card.Header>
             <Card.Body></Card.Body>
           </Card>
