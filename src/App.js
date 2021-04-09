@@ -12,30 +12,6 @@ import MovieView from "./views/MovieView";
 import SurveyView from "./views/SurveyView";
 import UpcomingMovieView from "./views/UpcomingMovieView";
 
-function App() {
-  const [todos, setTodo] = useState([]);
-
-  function testGet() {
-    fetch("http://localhost:3000")
-      .then((res) => res.text())
-      .then((data) => console.log(data));
-  }
-  function testGetData() {
-    fetch("http://localhost:3000/todos")
-      .then((res) => res.json())
-      .then((data) => setTodo(data));
-  }
-
-  function testPostTodos() {
-    fetch("http://localhost:3000/todos", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ title: "testing frontend post", completed: true }),
-    })
-      .then((res) => res.json())
-      .then((data) => console.log(data));
-  }
-
   return (
     <div className="App">
       <Switch>

@@ -2,8 +2,8 @@ export const baseURL = "https://socialapp-api.herokuapp.com/";
 export const movieURL = "https://imdb8.p.rapidapi.com/";
 
 // Login/logout APIs
-export const loginRequest = (username, password) => {
-  return fetch(baseURL + "auth/login", {
+export const loginRequest = (username, password) =>
+  fetch(`${baseURL}auth/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -11,10 +11,14 @@ export const loginRequest = (username, password) => {
       password,
     }),
   }).then((res) => res.json());
-};
 
-export const newLoginRequest = (username, displayName, password) => {
-  return fetch(baseURL + "users", {
+export const logoutRequest = (token) =>
+  fetch(`${baseURL}auth/logout`, {
+    headers: { Authorization: `Bearer ${token}` },
+  }).then((res) => res.json());
+
+export const createUser = (username, displayName, password) =>
+  fetch(`${baseURL}users`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -23,13 +27,6 @@ export const newLoginRequest = (username, displayName, password) => {
       password,
     }),
   }).then((res) => res.json());
-};
-
-export const logoutRequest = (token) => {
-  return fetch(baseURL + "auth/logout", {
-    headers: { Authorization: "Bearer " + token },
-  }).then((res) => res.json());
-};
 
 // User APIs
 export const getUserRequest = (username) => {

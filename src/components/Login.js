@@ -1,33 +1,40 @@
-import React, { useState } from 'react';
-import { loginRequest } from '../API/Fetch';
-import { Button, Form } from 'semantic-ui-react';
+import React, { useState } from "react";
+import { Button, Form } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
+
+import { loginRequest } from "../fetchRequests";
+import { LOGIN, useStore } from "../store";
 
 function Login() {
-
+  const dispatch = useStore((state) => state.dispatch);
+  const history = useHistory();
   const [formData, setFormData] = useState({
-    username: '',
-    password: '',
+    username: "",
+    password: "",
   });
 
   const handleLogin = (event) => {
     event.preventDefault();
     loginRequest(formData.username, formData.password).then((userData) => {
-      dispatch({ type: actions.LOGIN, payload: userData });
-      if (userData.statusCode === 200) history.push('/');
+      dispatch({ type: LOGIN, payload: userData });
+      if (userData.statusCode === 200) history.push("/home");
     });
   };
 
   const handleChange = (event) => {
-    setFormData((state) => ({ ...state, [event.target.name]: event.target.value }));
+    setFormData((state) => ({
+      ...state,
+      [event.target.name]: event.target.value,
+    }));
   };
 
-  
   return (
     <div className="bg-color">
       <div id="login-form">
         <h1>Login</h1>
+        <br />
         <Form onSubmit={handleLogin}>
-          <Form.Field>
+          <Form.Group>
             <label htmlFor="username">Username</label>
             <input
               type="text"
@@ -37,8 +44,8 @@ function Login() {
               required
               onChange={handleChange}
             />
-          </Form.Field>
-          <Form.Field>
+          </Form.Group>
+          <Form.Group>
             <label htmlFor="password">Password</label>
             <input
               type="password"
@@ -47,15 +54,11 @@ function Login() {
               required
               onChange={handleChange}
             />
-          </Form.Field>
-          <Button type="submit">Submit</Button>
-        </Form>
-        <hr />
-        <Link to="/signup">
-          <Button id="create-account" type="button">
-            Create New Account
+          </Form.Group>
+          <Button type="submit" variant="warning">
+            Submit
           </Button>
-        </Link>
+        </Form>
       </div>
     </div>
   );
