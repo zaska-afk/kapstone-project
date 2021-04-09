@@ -43,11 +43,19 @@ code {
   display: flex;
   align-items: center;
   justify-content: center;
+<<<<<<< HEAD
   outline: 8px solid black;
+=======
+  outline: 4px solid black;
+>>>>>>> b3236ab (work please)
   text-align: center;
   background-color: white;
   padding-bottom: 60px;
   margin: 60px;
+<<<<<<< HEAD
+=======
+  width: 200px;
+>>>>>>> b3236ab (work please)
 }
 .card {
   padding: 15px;
