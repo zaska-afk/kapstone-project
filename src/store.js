@@ -10,6 +10,7 @@ export const LOGOUT = "LOGOUT";
 export const GETCHATS = "GETCHATS";
 export const USERINFO = "USERINFO";
 export const DELETEUSER = "DELETEUSER";
+export const FINDMOVIE = "FINDMOVIE";
 
 // define reducer function
 const reducer = (state, action) => {
@@ -24,7 +25,8 @@ const reducer = (state, action) => {
       return { userProfile: action.payload };
     case DELETEUSER:
       return { userProfile: {}, user: initialState.user };
-
+    case FINDMOVIE:
+      return { title: action.payload };
     default:
       return state;
   }
