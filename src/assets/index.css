@@ -43,12 +43,11 @@ code {
   display: flex;
   align-items: center;
   justify-content: center;
-  outline: 4px solid black;
+  outline: 8px solid black;
   text-align: center;
   background-color: white;
   padding-bottom: 60px;
   margin: 60px;
-  width: 200px;
 }
 .card {
   padding: 15px;
