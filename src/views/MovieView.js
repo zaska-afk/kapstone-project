@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, CardDeck, Button } from "react-bootstrap";
 
-//import DirectorChair from "../assets/DirectorChair.mp4";
+import DirectorChair from "../assets/DirectorChair.mp4";
 import NavBar from "../components/NavBar";
 import { titleFind, movieSynopses } from "../fetchRequests";
 
@@ -15,7 +15,7 @@ function MovieView() {
   return (
     <div>
       <NavBar />
-      {/* <video
+      <video
         autoPlay
         loop
         muted
@@ -29,9 +29,9 @@ function MovieView() {
           transform: "translate(-50%, -50%)",
           zIndex: "-1",
         }}
-      > */}
-      {/* <source src={DirectorChair} type="video/mp4" />
-      </video> */}
+      >
+        <source src={DirectorChair} type="video/mp4" />
+      </video>
 
       <h1 className="signin-header">Movie Search</h1>
       <h3 className="text">Movie Title</h3>

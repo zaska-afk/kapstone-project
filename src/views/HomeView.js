@@ -3,14 +3,14 @@ import { LinkContainer } from "react-router-bootstrap";
 import { Card, CardDeck } from "react-bootstrap";
 
 import NavBar from "../components/NavBar";
-//import Popcorn from "../assets/Popcorn.mp4";
+import Popcorn from "../assets/Popcorn.mp4";
 
 function HomeView() {
   return (
     <>
       <NavBar />
       <div>
-        {/* <video
+        <video
           autoPlay
           loop
           muted
@@ -26,7 +26,7 @@ function HomeView() {
           }}
         >
           <source src={Popcorn} type="video/mp4" />
-        </video> */}
+        </video>
         <h1 className="home-header">Movie Buddies Home</h1>
         <CardDeck className="home-deck">
           <Card className="card">

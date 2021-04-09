@@ -1,12 +1,12 @@
 import React from "react";
 import { Card, CardDeck, Button } from "react-bootstrap";
 
-//import LoginBG from "../assets/LoginBG.mp4";
+import LoginBG from "../assets/LoginBG.mp4";
 
 function SignInView() {
   return (
     <div>
-      {/* <video
+      <video
         autoPlay
         loop
         muted
@@ -22,7 +22,7 @@ function SignInView() {
         }}
       >
         <source src={LoginBG} type="video/mp4" />
-      </video> */}
+      </video>
       <h1 className="signin-header">Movie Buddies</h1>
       <h3 className="text">
         "Friendship is about finding people who are your kind of crazy."
