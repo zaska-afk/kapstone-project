@@ -1,7 +1,9 @@
 import React from "react";
-import { Card, CardDeck, Button } from "react-bootstrap";
+import { Card, CardDeck } from "react-bootstrap";
 
 import LoginBG from "../assets/LoginBG.mp4";
+import SignUp from "../components/SignUp";
+import Login from "../components/Login";
 
 function SignInView() {
   return (
@@ -31,20 +33,12 @@ function SignInView() {
       <CardDeck className="card-deck">
         <Card className="login-card">
           <Card.Body>
-            <Card.Title className="title">Login</Card.Title>
-            <br />
-            <Button type="submit" size="lg" variant="warning">
-              Login
-            </Button>
+            <SignUp />
           </Card.Body>
         </Card>
         <Card className="login-card">
           <Card.Body>
-            <Card.Title className="title">Sign Up</Card.Title>
-            <br />
-            <Button type="submit" size="lg" variant="warning">
-              Sign Up
-            </Button>
+            <Login />
             <br />
           </Card.Body>
         </Card>
