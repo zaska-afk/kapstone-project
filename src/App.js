@@ -12,8 +12,10 @@ import MovieView from "./views/MovieView";
 import SurveyView from "./views/SurveyView";
 import UpcomingMovieView from "./views/UpcomingMovieView";
 import MoviePrefrencesView from "./views/MoviePrefrencesView";
+import { getrequest } from "./fetchRequests";
 
 function App() {
+  console.log(getrequest());
   return (
     <div className="App">
       <Switch>
