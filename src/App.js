@@ -1,6 +1,7 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useState } from "react";
 
 import HomeView from "./views/HomeView";
 import NotFoundView from "./views/NotFoundView";
@@ -14,8 +15,40 @@ import UpcomingMovieView from "./views/UpcomingMovieView";
 import MoviePrefrencesView from "./views/MoviePrefrencesView";
 
 function App() {
+  const [todos, setTodos] = useState([]);
+
+  function testGet() {
+    fetch("https://localhost:3000").then(
+      ((res) => res.text()).then((data) => console.log(data))
+    );
+  }
+  function testGetTodos() {
+    fetch("https://localhost:3000/todos").then(
+      ((res) => res.json()).then((arrayOfTodos) => setTodos(arrayOfTodos))
+    );
+  }
+  function testPostTodos() {
+    fetch("https://localhost:3000/todos", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ comments: "testing frontend post", id: 6 }),
+    }).then(((res) => res.json()).then((data) => console.log(data)));
+  }
+
   return (
     <div className="App">
+      <button onClick={testGet}>test get request</button>
+      <button onClick={testGetTodos}>test get todos request</button>
+      <button onClick={testPostTodos}>test post todos request</button>
+      {todos.map((todo, index) => {
+        return (
+          <div key={index}>
+            <div>Title: {todo.title}</div>
+            <div>Completed: {todo.completed.toString()}</div>
+          </div>
+        );
+      })}
+
       <Switch>
         <Route exact path="/" component={SignInView} />
         <Route path="/home" component={HomeView} />
