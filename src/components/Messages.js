@@ -39,3 +39,35 @@ function Messages() {
   );
 }
 export default Messages;
+
+//to delete messages
+
+//function MessageItem(props) {
+  // const [countLikes, setCounter] = useState();
+  // const authUser = useStore((state) => state.user);
+  // const { id } = props;
+  // const user = useStore((state) => state.user);
+  // const trashMessage = (token, messageId) => {
+  //   deleteMessage(token, messageId).then((data) => {
+  //     console.log(data.statusCode);
+  //   });
+  // };
+  // return (
+  //   <div className="MessageItem_container">
+  //     <p>{props.username}</p>
+  //     <p>{props.createdAt}</p>
+  //     <p>{props.text}</p>
+  //     <p>
+  //       <button onClick={(props) => addLike(authUser.token, id)}>Like</button>
+  //       {props.likes}
+  //       <EmojiHeartEyes />
+  //     </p>
+
+
+
+  //     {props.username === user.username && (
+  //       <button onClick={() => trashMessage(user.token, id)}>
+
+  //         <Trash />
+  //       </button>
+  //     )}
