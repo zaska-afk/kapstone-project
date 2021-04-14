@@ -2,21 +2,15 @@ import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 
-import { loginRequest } from "../fetchRequests";
-import { LOGIN, useStore } from "../store";
+import useStore from "../store";
 
-function Login() {
-  const dispatch = useStore((state) => state.dispatch);
+function Login(props) {
+  const loginRequest = useStore((state) => state.loginRequest);
   const history = useHistory();
-  const [formData, setFormData] = useState({
-    username: "",
-    password: "",
-  });
-
+  const [formData, setFormData] = useState({});
   const handleLogin = (event) => {
     event.preventDefault();
     loginRequest(formData.username, formData.password).then((userData) => {
-      dispatch({ type: LOGIN, payload: userData });
       if (userData.statusCode === 200) history.push("/home");
     });
   };
@@ -31,7 +25,7 @@ function Login() {
   return (
     <div className="bg-color">
       <div id="login-form">
-        <h1>Login</h1>
+        <h2>Login</h2>
         <br />
         <Form onSubmit={handleLogin}>
           <Form.Group>
