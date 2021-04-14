@@ -1,34 +1,120 @@
 import create from "zustand";
-import { devtools, redux } from "zustand/middleware";
+import { devtools } from "zustand/middleware";
+
+const movieURL = "https://imdb8.p.rapidapi.com/";
+const baseURL = "https://socialapp-api.herokuapp.com/";
 
 // define the store's initial state
-const initialState = { user: { token: "" }, chats: [] };
+const useStore = create(
+  devtools((set) => ({
+    //Our DB URL
+    // Login/logout APIs
+    loginRequest: (username, password) =>
+      fetch(`${baseURL}auth/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          username,
+          password,
+        }),
+      }).then((res) => res.json()),
+    logoutRequest: (token) =>
+      fetch(`${baseURL}auth/logout`, {
+        headers: { Authorization: `Bearer ${token}` },
+      }).then((res) => res.json()),
+    createUser: (username, displayName, password) =>
+      fetch(`${baseURL}users`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          username,
+          displayName,
+          password,
+        }),
+      }).then((res) => res.json()),
 
-// set action types
-export const LOGIN = "LOGIN";
-export const LOGOUT = "LOGOUT";
-export const GETCHATS = "GETCHATS";
-export const USERINFO = "USERINFO";
-export const DELETEUSER = "DELETEUSER";
+    //Movie URL
+    titleFind: (searchTitle) => {
+      return fetch(movieURL + `title/find?q=${searchTitle}`, {
+        headers: {
+          "x-rapidapi-key":
+            "194a9c5509mshb0aa3ac6c940779p18e80ajsn2d080182ae5f",
+          useQueryString: true,
+        },
+      }).then((res) => res.json());
+    },
+    titleBase: (searchId) => {
+      return fetch(movieURL + `title/get-base?tconst=${searchId}`, {
+        headers: {
+          "x-rapidapi-key":
+            "194a9c5509mshb0aa3ac6c940779p18e80ajsn2d080182ae5f",
+          useQueryString: true,
+        },
+      }).then((res) => res.json());
+    },
+    base: {},
+    movieSynopses: (titleId) => {
+      return fetch(
+        movieURL + "title/get-synopses?tconst=" + titleId.split("/")[2],
+        {
+          headers: {
+            "x-rapidapi-key":
+              "194a9c5509mshb0aa3ac6c940779p18e80ajsn2d080182ae5f",
+            useQueryString: true,
+          },
+        }
+      ).then((res) => res.json());
+    },
+    popularGenres: () => {
+      return fetch(movieURL + "title/list-popular-genres", {
+        headers: {
+          "x-rapidapi-key":
+            "194a9c5509mshb0aa3ac6c940779p18e80ajsn2d080182ae5f",
+          useQueryString: true,
+        },
+      }).then((res) => res.json());
+    },
+    movieRatings: (titleId) => {
+      return fetch(
+        movieURL + "title/get-ratings?tconst=" + titleId.split("/")[2],
+        {
+          headers: {
+            "x-rapidapi-key":
+              "194a9c5509mshb0aa3ac6c940779p18e80ajsn2d080182ae5f",
+            useQueryString: true,
+          },
+        }
+      ).then((res) => res.json());
+    },
+    comingSoon: (titleId) => {
+      return fetch(
+        movieURL +
+          "title/get-coming-soon-movies?homeCountry=US&purchaseCountry=US&currentCountry=US",
+        {
+          headers: {
+            "x-rapidapi-key":
+              "194a9c5509mshb0aa3ac6c940779p18e80ajsn2d080182ae5f",
+            useQueryString: true,
+          },
+        }
+      )
+        .then((res) => res.json())
+        .then((data) => set({ comingSoonArray: data }));
+    },
+    comingSoonArray: {},
+    movieImages: (titleId) => {
+      return fetch(
+        movieURL + `title/get-images?tconst=${titleId.split("/")[2]}&limit=1`,
+        {
+          headers: {
+            "x-rapidapi-key":
+              "194a9c5509mshb0aa3ac6c940779p18e80ajsn2d080182ae5f",
+            useQueryString: true,
+          },
+        }
+      ).then((res) => res.json());
+    },
+  }))
+);
 
-// define reducer function
-const reducer = (state, action) => {
-  switch (action.type) {
-    case LOGIN:
-      return { user: action.payload };
-    case LOGOUT:
-      return { user: {} };
-    case GETCHATS:
-      return { messages: action.payload };
-    case USERINFO:
-      return { userProfile: action.payload };
-    case DELETEUSER:
-      return { userProfile: {}, user: initialState.user };
-
-    default:
-      return state;
-  }
-};
-
-// create useStore hook
-export const useStore = create(devtools(redux(reducer, initialState)));
+export default useStore;

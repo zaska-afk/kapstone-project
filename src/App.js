@@ -8,10 +8,20 @@ import SignInView from "./views/SignInView";
 import ProfileView from "./views/ProfileView";
 import ChatRoomView from "./views/ChatRoomView";
 import MovieBuddiesView from "./views/MovieBuddiesView";
-import MovieView from "./views/MovieView";
+import MovieSearchView from "./views/MovieSearchView";
 import SurveyView from "./views/SurveyView";
 import UpcomingMovieView from "./views/UpcomingMovieView";
 import MoviePrefrencesView from "./views/MoviePrefrencesView";
+import ActionChatView from "./views/ActionChatView";
+import AnimationChatView from "./views/AnimationChatView";
+import ComedyChatView from "./views/ComedyChatView";
+import DocumentaryChatView from "./views/DocumentaryChatView";
+import HorrorChatView from "./views/HorrorChatView";
+import KidsChatView from "./views/KidsChatView";
+import SciFiChatView from "./views/SciFiChatView";
+import ThrillerChatView from "./views/ThrillerChatView";
+import UpcomingChatView from "./views/UpcomingChatView";
+//import useStore from "./store";
 
 function App() {
   return (
@@ -21,11 +31,23 @@ function App() {
         <Route path="/home" component={HomeView} />
         <Route path="/profile" component={ProfileView} />
         <Route path="/buddies" component={MovieBuddiesView} />
-        <Route path="/movies" component={MovieView} />
+        <Route path="/movies" component={MovieSearchView} />
         <Route path="/survey" component={SurveyView} />
         <Route path="/upcoming" component={UpcomingMovieView} />
-        <Route path="/chatrooms" component={ChatRoomView} />
+        <Route exact path="/chatrooms" component={ChatRoomView} />
         <Route path="/prefrences" component={MoviePrefrencesView} />
+        <Route path="/chatrooms/action" component={ActionChatView} />
+        <Route path="/chatrooms/animation" component={AnimationChatView} />
+        <Route path="/chatrooms/comedy" component={ComedyChatView} />
+        <Route
+          path="/chatrooms/documentaries"
+          component={DocumentaryChatView}
+        />
+        <Route path="/chatrooms/horror" component={HorrorChatView} />
+        <Route path="/chatrooms/kids" component={KidsChatView} />
+        <Route path="/chatrooms/scifi" component={SciFiChatView} />
+        <Route path="/chatrooms/thriller" component={ThrillerChatView} />
+        <Route path="/chatrooms/upcoming" component={UpcomingChatView} />
         <Route component={NotFoundView} />
       </Switch>
     </div>

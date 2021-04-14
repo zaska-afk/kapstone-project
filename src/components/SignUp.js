@@ -2,27 +2,22 @@ import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 
-import { createUser, loginRequest } from "../fetchRequests";
-import { LOGIN, useStore } from "../store";
+import useStore from "../store";
 
-const SignUp = () => {
-  const dispatch = useStore((state) => state.dispatch);
+const SignUp = (props) => {
+  const setCreateUser = useStore((state) => state.createUser);
+  const loginRequest = useStore((state) => state.loginRequest);
   const history = useHistory();
-  const [formData, setFormData] = useState({
-    username: "",
-    displayName: "",
-    password: "",
-  });
+  const [formData, setFormData] = useState({});
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await createUser(
+    await setCreateUser(
       formData.username,
       formData.displayName,
       formData.password
     );
     const loginData = await loginRequest(formData.username, formData.password);
-    dispatch({ type: LOGIN, payload: loginData });
     loginData.token ? history.push("/survey") : history.push("/");
   };
 
@@ -35,9 +30,8 @@ const SignUp = () => {
   return (
     <div className="colorbg">
       <div id="newaccount-form">
-        <h1>Sign Up</h1>
+        <h2>Sign Up</h2>
         <Form onSubmit={handleSubmit}>
-          <br />
           <Form.Group>
             <label>Username</label>
             <input
@@ -47,7 +41,6 @@ const SignUp = () => {
               autoFocus
               required
               onChange={handleChange}
-              pattern=".{3,}"
               placeholder="Username"
             />
           </Form.Group>
@@ -60,7 +53,6 @@ const SignUp = () => {
               autoFocus
               required
               onChange={handleChange}
-              pattern=".{3,}"
               placeholder="Display Name"
             />
           </Form.Group>
@@ -73,7 +65,6 @@ const SignUp = () => {
               autoFocus
               required
               onChange={handleChange}
-              pattern=".{3,}"
               placeholder="Password"
             />
           </Form.Group>
