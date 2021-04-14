@@ -3,6 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useState } from "react";
 
+import { getrequest } from "./fetchRequests";
 import HomeView from "./views/HomeView";
 import NotFoundView from "./views/NotFoundView";
 import SignInView from "./views/SignInView";
@@ -18,17 +19,18 @@ function App() {
   const [todos, setTodos] = useState([]);
 
   function testGet() {
-    fetch("https://localhost:3000").then(
-      ((res) => res.text()).then((data) => console.log(data))
-    );
+    getrequest().then((res) => console.log(res));
+    // fetch("http://localhost:3000").then(
+    //   ((res) => res.text()).then((data) => console.log(data))
+    // );
   }
-  function testGetTodos() {
-    fetch("https://localhost:3000/todos").then(
-      ((res) => res.json()).then((arrayOfTodos) => setTodos(arrayOfTodos))
-    );
+  function testGetComments() {
+    return fetch("http://localhost:3000/comments")
+      .then((res) => res.json())
+      .then((arrayOfComments) => setTodos(arrayOfComments.comments));
   }
   function testPostTodos() {
-    fetch("https://localhost:3000/todos", {
+    fetch("http://localhost:3000/comments", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ comments: "testing frontend post", id: 6 }),
@@ -38,7 +40,7 @@ function App() {
   return (
     <div className="App">
       <button onClick={testGet}>test get request</button>
-      <button onClick={testGetTodos}>test get todos request</button>
+      <button onClick={testGetComments}>test get todos request</button>
       <button onClick={testPostTodos}>test post todos request</button>
       {todos.map((todo, index) => {
         return (

@@ -1,5 +1,6 @@
 export const baseURL = "https://socialapp-api.herokuapp.com/";
 export const movieURL = "https://imdb8.p.rapidapi.com/";
+export const ourDbURL = "http://localhost:3000/";
 
 // Login/logout APIs
 export const loginRequest = (username, password) =>
@@ -141,7 +142,9 @@ export const comingSoon = (titleId) => {
         useQueryString: true,
       },
     }
-  ).then((res) => res.json());
+  )
+    .then((res) => res.json())
+    .then((res) => console.log(res));
 };
 
 export const movieImages = (titleId) => {
@@ -154,4 +157,8 @@ export const movieImages = (titleId) => {
       },
     }
   ).then((res) => res.json());
+};
+
+export const getrequest = () => {
+  return fetch(ourDbURL + "comments").then((res) => res.json());
 };
