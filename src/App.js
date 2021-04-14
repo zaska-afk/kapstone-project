@@ -11,18 +11,21 @@ import MovieBuddiesView from "./views/MovieBuddiesView";
 import MovieView from "./views/MovieView";
 import SurveyView from "./views/SurveyView";
 import UpcomingMovieView from "./views/UpcomingMovieView";
+import MoviePrefrencesView from "./views/MoviePrefrencesView";
 
+function App() {
   return (
     <div className="App">
       <Switch>
         <Route exact path="/" component={SignInView} />
         <Route path="/home" component={HomeView} />
-        <Route path="/profile/:username" component={ProfileView} />
+        <Route path="/profile" component={ProfileView} />
         <Route path="/buddies" component={MovieBuddiesView} />
         <Route path="/movies" component={MovieView} />
         <Route path="/survey" component={SurveyView} />
         <Route path="/upcoming" component={UpcomingMovieView} />
         <Route path="/chatrooms" component={ChatRoomView} />
+        <Route path="/prefrences" component={MoviePrefrencesView} />
         <Route component={NotFoundView} />
       </Switch>
     </div>

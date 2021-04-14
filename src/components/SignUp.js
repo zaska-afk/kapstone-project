@@ -23,7 +23,7 @@ const SignUp = () => {
     );
     const loginData = await loginRequest(formData.username, formData.password);
     dispatch({ type: LOGIN, payload: loginData });
-    loginData.token ? history.push("/home") : history.push("/");
+    loginData.token ? history.push("/survey") : history.push("/");
   };
 
   const handleChange = (e) => {
@@ -34,7 +34,6 @@ const SignUp = () => {
 
   return (
     <div className="colorbg">
-      {/* {user.token && <Redirect to="/" />} */}
       <div id="newaccount-form">
         <h1>Sign Up</h1>
         <Form onSubmit={handleSubmit}>
