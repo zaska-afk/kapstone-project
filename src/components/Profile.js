@@ -1,5 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-
+import React, { Component } from 'react';
+import { useStore } from "../store";
 // class App extends Profile {
 //     constructor(props) {
 //         super(props);
@@ -27,20 +28,20 @@ import "bootstrap/dist/css/bootstrap.min.css";
 // }
 
 
-function Profile(props) {
+function Profile() {
     return (
         <div className="Profile">
-            <h1 className="Name">{props.person.name}</h1>
-            <p className="Bio">{props.person.biography}</p>
+            <h1 className="Name">{user.username}</h1>
+            <p className="Favorite Movies">{users.id.likedMovies}</p>
             <div className="Quote">
-                <blockquote>&ldquo; {props.quote.content} &rdquo;</blockquote>
-                <div className="byline">&mdash; {props.quote.source}</div>
+                <blockquote>&ldquo; {quote.content} &rdquo;</blockquote>
+                <div className="byline">&mdash; {quote.source}</div>
             </div>
 
         </div>
     );
 }
-console.log("working!!")//instead of console.log i want to run the function Profile to return 32-40.
+console.log("working!!")//instead of console.log i want to run/call the function Profile to return 32-40.
 
 
 

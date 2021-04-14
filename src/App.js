@@ -29,7 +29,7 @@ function App() {
       <Switch>
         <Route exact path="/" component={SignInView} />
         <Route path="/home" component={HomeView} />
-        <Route path="/profile/:username" component={ProfileView} />
+        <Route path="/profile" component={ProfileView} />
         <Route path="/buddies" component={MovieBuddiesView} />
         <Route path="/movies" component={MovieSearchView} />
         <Route path="/survey" component={SurveyView} />
