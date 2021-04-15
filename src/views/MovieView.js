@@ -4,6 +4,7 @@ import { Card, CardDeck, Button } from "react-bootstrap";
 import DirectorChair from "../assets/DirectorChair.mp4";
 import NavBar from "../components/NavBar";
 import { titleFind, movieSynopses } from "../fetchRequests";
+import SearchBox from '../components/SearchBox'
 
 function MovieView() {
   function testTitleFind() {
@@ -34,6 +35,8 @@ function MovieView() {
       </video>
 
       <h1 className="signin-header">Movie Search</h1>
+      <CardDeck.SearchBox />
+
       <h3 className="text">Movie Title</h3>
 
       <CardDeck className="card-deck">

@@ -1,6 +1,7 @@
 import React from "react";
 import { LinkContainer } from "react-router-bootstrap";
 import { Nav, Navbar, Container } from "react-bootstrap";
+import SearchBox from '../components/SearchBox'
 
 function NavBar() {
   return (
@@ -31,6 +32,7 @@ function NavBar() {
           </Nav>
           <Nav.Item></Nav.Item>
         </Navbar.Collapse>
+        <SearchBox />
       </Navbar>
     </Container>
   );
