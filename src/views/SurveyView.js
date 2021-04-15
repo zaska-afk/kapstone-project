@@ -3,6 +3,7 @@ import { Card, CardDeck, Image } from "react-bootstrap";
 
 import NavBar from "../components/NavBar";
 import PopcornContainers from "../assets/PopcornContainers.jpg";
+import FavoriteMovies from "../components/FavoriteMovies";
 
 function SurveyView() {
   return (
@@ -23,6 +24,7 @@ function SurveyView() {
       />
       <h1 className="home-header">Movies Survey</h1>
       <h2 className="text">To Get Started, Select Ten Movies You Enjoy</h2>
+      <FavoriteMovies />
       <CardDeck>
         <Card className="home-card">
           <Card.Header bg="info" className="center">
