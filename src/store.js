@@ -1,8 +1,9 @@
 import create from "zustand";
 import { devtools } from "zustand/middleware";
 
-const movieURL = "https://imdb8.p.rapidapi.com/";
+const movieURL = "https://api.themoviedb.org/";
 const baseURL = "https://socialapp-api.herokuapp.com/";
+const apiKey = "api_key=6645eb422ef966984e8f1eade6202ea0";
 
 // define the store's initial state
 const useStore = create(
@@ -33,87 +34,46 @@ const useStore = create(
         }),
       }).then((res) => res.json()),
 
-    //Movie URL
-    titleFind: (searchTitle) => {
-      return fetch(movieURL + `title/find?q=${searchTitle}`, {
-        headers: {
-          "x-rapidapi-key":
-            "194a9c5509mshb0aa3ac6c940779p18e80ajsn2d080182ae5f",
-          useQueryString: true,
-        },
-      }).then((res) => res.json());
+    //Movie URLs
+
+    upcomingMovies: () => {
+      return fetch(movieURL + `3/movie/upcoming?${apiKey}&language=en-US`)
+        .then((res) => res.json())
+        .then((data) => set({ upcomingArray: data }));
     },
-    titleBase: (searchId) => {
-      return fetch(movieURL + `title/get-base?tconst=${searchId}`, {
-        headers: {
-          "x-rapidapi-key":
-            "194a9c5509mshb0aa3ac6c940779p18e80ajsn2d080182ae5f",
-          useQueryString: true,
-        },
-      }).then((res) => res.json());
+    upcomingArray: { results: [] },
+
+    popularMovies: () => {
+      return fetch(movieURL + `3/movie/popular?${apiKey}&language=en-US&page=1`)
+        .then((res) => res.json())
+        .then((data) => set({ popularArray: data }));
     },
-    base: {},
-    movieSynopses: (titleId) => {
-      return fetch(
-        movieURL + "title/get-synopses?tconst=" + titleId.split("/")[2],
-        {
-          headers: {
-            "x-rapidapi-key":
-              "194a9c5509mshb0aa3ac6c940779p18e80ajsn2d080182ae5f",
-            useQueryString: true,
-          },
-        }
-      ).then((res) => res.json());
+    popularArray: { results: [] },
+
+    /////////////////////////////////////////////////////////////////////////
+    movieGenres: () => {
+      return fetch(movieURL + `3/878/movie/list?${apiKey}&language=en-US`)
+        .then((res) => res.json())
+        .then((data) => set({ genreArray: data }));
     },
-    popularGenres: () => {
-      return fetch(movieURL + "title/list-popular-genres", {
-        headers: {
-          "x-rapidapi-key":
-            "194a9c5509mshb0aa3ac6c940779p18e80ajsn2d080182ae5f",
-          useQueryString: true,
-        },
-      }).then((res) => res.json());
-    },
-    movieRatings: (titleId) => {
-      return fetch(
-        movieURL + "title/get-ratings?tconst=" + titleId.split("/")[2],
-        {
-          headers: {
-            "x-rapidapi-key":
-              "194a9c5509mshb0aa3ac6c940779p18e80ajsn2d080182ae5f",
-            useQueryString: true,
-          },
-        }
-      ).then((res) => res.json());
-    },
-    comingSoon: (titleId) => {
+    genreArray: { results: [] },
+
+    movieSearch: (query) => {
       return fetch(
         movieURL +
-          "title/get-coming-soon-movies?homeCountry=US&purchaseCountry=US&currentCountry=US",
-        {
-          headers: {
-            "x-rapidapi-key":
-              "194a9c5509mshb0aa3ac6c940779p18e80ajsn2d080182ae5f",
-            useQueryString: true,
-          },
-        }
+          `3/search/movie?${apiKey}&language=en-US&query=${query}&page=1&include_adult=false`
       )
         .then((res) => res.json())
-        .then((data) => set({ comingSoonArray: data }));
+        .then((data) => set({ searchArray: data }));
     },
-    comingSoonArray: {},
-    movieImages: (titleId) => {
-      return fetch(
-        movieURL + `title/get-images?tconst=${titleId.split("/")[2]}&limit=1`,
-        {
-          headers: {
-            "x-rapidapi-key":
-              "194a9c5509mshb0aa3ac6c940779p18e80ajsn2d080182ae5f",
-            useQueryString: true,
-          },
-        }
-      ).then((res) => res.json());
+    searchArray: { results: [] },
+
+    movieDetails: (movie_id) => {
+      return fetch(movieURL + `3/movie/${movie_id}?${apiKey}&language=en-US`)
+        .then((res) => res.json())
+        .then((data) => set({ detailsArray: data }));
     },
+    detailsArray: { results: [] },
   }))
 );
 
