@@ -1,10 +1,11 @@
 import React from "react";
-import { Image } from "react-bootstrap";
+import { Card, CardDeck, Col } from "react-bootstrap";
 
 import NavBar from "../components/NavBar";
 import Action from "../assets/Action.mp4";
 import Messages from "../components/Messages";
 import ActionMovies from "../components/ActionMovies";
+import CreateMessage from "../components/CreateMessage";
 
 function ActionChatView() {
   return (
@@ -29,7 +30,16 @@ function ActionChatView() {
           <source src={Action} type="video/mp4" />
         </video>
         <h1 className="home-header">Action Movies Chat</h1>
-        {/* <Messages /> */}
+        <CardDeck>
+          <Col>
+            <Card className="chat-view-cards">
+              <Messages />
+            </Card>
+            <Card className="chat-view-cards">
+              <CreateMessage />
+            </Card>
+          </Col>
+        </CardDeck>
         {/* <ActionMovies /> */}
       </div>
     </>
