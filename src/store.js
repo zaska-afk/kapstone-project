@@ -18,7 +18,11 @@ const useStore = create(
           username,
           password,
         }),
-      }).then((res) => res.json()),
+      }).then((res) => res.json()).then((user) => {
+        set({ user: user })
+        return user
+
+      }),
     logoutRequest: (token) =>
       fetch(`${baseURL}auth/logout`, {
         headers: { Authorization: `Bearer ${token}` },
@@ -33,7 +37,60 @@ const useStore = create(
           password,
         }),
       }).then((res) => res.json()),
+    user: {},
 
+    //messages/comments
+
+    getUserRequest: (username) => {
+      return fetch(baseURL + "users/" + username).then((res) => res.json());
+    },
+    msgRequest: () => {
+      return fetch(baseURL + "messages", {}).then((res) => res.json());
+    },
+    singleMessage: () => {
+      return fetch(baseURL + "messages/1", {}).then((res) => res.json());
+    },
+    newMessageRequest: (token, text) => {
+      return fetch(baseURL + "messages", {
+        method: "POST",
+        headers: {
+          Authorization: "Bearer " + token,
+          "Content-Type": "application/json",
+        },
+
+        body: JSON.stringify({
+          text,
+        }),
+      }).then((res) => res.json());
+    },
+    deleteMessage: (token, username) =>
+      fetch(baseURL + "users/" + username, {
+        headers: { Authorization: "Bearer " + token },
+        method: "DELETE",
+      }),
+
+    // export const getAllUserMessagesList = (username) => {
+    //   return fetch(
+    //     baseURL + "messages?limit=100&username=" + username,
+    //     {}
+    //   ).then((res) => res.json());
+    // };
+
+    // export const getUserMessage = () => {
+    //   return fetch(baseURL + "messages/" + 105, {
+    //     method: "GET",
+    //   }).then((res) => res.json());
+    // };
+
+    // export const deleteMessage = (token, messageId) => {
+    //   return fetch(baseURL + "messages/" + messageId, {
+    //     method: "DELETE",
+    //     headers: {
+    //       Authorization: "Bearer " + token,
+    //       "Content-Type": "application/json",
+    //     },
+    //   }).then((res) => res.json());
+    // };
     //Movie URLs
 
     upcomingMovies: () => {
@@ -61,7 +118,7 @@ const useStore = create(
     movieSearch: (query) => {
       return fetch(
         movieURL +
-          `3/search/movie?${apiKey}&language=en-US&query=${query}&page=1&include_adult=false`
+        `3/search/movie?${apiKey}&language=en-US&query=${query}&page=1&include_adult=false`
       )
         .then((res) => res.json())
         .then((data) => set({ searchArray: data }));
