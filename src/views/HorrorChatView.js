@@ -1,8 +1,10 @@
 import React from "react";
-import { Image } from "react-bootstrap";
+import { Card, CardDeck, Col } from "react-bootstrap";
 
 import NavBar from "../components/NavBar";
 import Horror from "../assets/Horror.mp4";
+import CreateMessage from "../components/CreateMessage";
+import Messages from "../components/Messages";
 
 function HorrorChatView() {
   return (
@@ -27,6 +29,16 @@ function HorrorChatView() {
           <source src={Horror} type="video/mp4" />
         </video>
         <h1 className="home-header">Horror Movies Chat</h1>
+        <CardDeck>
+          <Col>
+            <Card className="chat-view-cards">
+              <Messages />
+            </Card>
+            <Card className="chat-view-cards">
+              <CreateMessage />
+            </Card>
+          </Col>
+        </CardDeck>
       </div>
     </>
   );

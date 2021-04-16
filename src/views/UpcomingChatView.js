@@ -1,7 +1,10 @@
 import React from "react";
+import { Card, CardDeck, Col } from "react-bootstrap";
 
 import NavBar from "../components/NavBar";
 import CityScape from "../assets/CityScape.mp4";
+import CreateMessage from "../components/CreateMessage";
+import Messages from "../components/Messages";
 
 function UpcomingChatView() {
   return (
@@ -26,6 +29,16 @@ function UpcomingChatView() {
           <source src={CityScape} type="video/mp4" />
         </video>
         <h1 className="home-header">Upcoming Movies Chat</h1>
+        <CardDeck>
+          <Col>
+            <Card className="chat-view-cards">
+              <Messages />
+            </Card>
+            <Card className="chat-view-cards">
+              <CreateMessage />
+            </Card>
+          </Col>
+        </CardDeck>
       </div>
     </>
   );
