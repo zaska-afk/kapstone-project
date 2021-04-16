@@ -1,7 +1,10 @@
 import React from "react";
+import { Card, CardDeck, Col } from "react-bootstrap";
 
 import NavBar from "../components/NavBar";
 import SciFi from "../assets/SciFi.mp4";
+import CreateMessage from "../components/CreateMessage";
+import Messages from "../components/Messages";
 
 function SciFiChatView() {
   return (
@@ -27,8 +30,16 @@ function SciFiChatView() {
         </video>
 
         <h1 className="home-header">SciFi Movies Chat</h1>
-
-        {/* <MovieGenres /> */}
+        <CardDeck>
+          <Col>
+            <Card className="chat-view-cards">
+              <Messages />
+            </Card>
+            <Card className="chat-view-cards">
+              <CreateMessage />
+            </Card>
+          </Col>
+        </CardDeck>
       </div>
     </>
   );

@@ -160,3 +160,13 @@ code {
   max-width: 600px;
   height: 100%;
 }
+
+.chat-view-cards {
+  display: flex;
+  padding: 15px;
+  outline: 4px solid black;
+  align-items: center;
+  text-align: center;
+  width: 400px;
+  margin: 40px;
+}
