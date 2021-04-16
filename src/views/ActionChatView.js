@@ -2,16 +2,19 @@ import React from "react";
 import { Image } from "react-bootstrap";
 
 import NavBar from "../components/NavBar";
-import Safe from "../assets/Safe.jpg";
+
+import Action from "../assets/Action.mp4";
 import Messages from "../components/Messages";
-import CreateMessage from "../components/CreateMessage"
+import ActionMovies from "../components/ActionMovies";
+
+
 
 function ActionChatView() {
   return (
     <>
       <NavBar />
       <div>
-        {/* <video
+        <video
           autoPlay
           loop
           muted
@@ -26,25 +29,13 @@ function ActionChatView() {
             zIndex: "-1",
           }}
         >
-          <source src={LoginBG} type="video/mp4" />
-        </video> */}
-        <Image
-          src={Safe}
-          style={{
-            position: "absolute",
-            //width: "100%",
-            left: "50%",
-            top: "70%",
-            //height: "100%",
-            //objectFit: "cover",
-            transform: "translate(-50%, -50%)",
-            zIndex: "-1",
-          }}
-        />
+          <source src={Action} type="video/mp4" />
+        </video>
         <h1 className="home-header">Action Movies Chat</h1>
 
-        <Messages />
-        <CreateMessage />
+        {/* <Messages /> */}
+        {/* <ActionMovies /> */}
+
       </div>
     </>
   );

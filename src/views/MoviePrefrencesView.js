@@ -2,7 +2,6 @@ import React from "react";
 import useStore from "../store.js";
 import Spinner from "react-bootstrap/Spinner";
 
-import FavoriteMovies from "../components/FavoriteMovies";
 import NavBar from "../components/NavBar";
 
 function MoviePrefrencesView() {
@@ -56,6 +55,7 @@ function MoviePrefrencesView() {
   return (
     <>
       <NavBar />
+
       <div className="movieprefrences">
         <h1>Movie Prefrences</h1>
         <h3>
@@ -96,6 +96,7 @@ function MoviePrefrencesView() {
           })}
         </div>
       </div>
+
     </>
   );
 }
