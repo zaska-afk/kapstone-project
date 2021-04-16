@@ -1,6 +1,5 @@
 import React from "react";
 
-import FavoriteMovies from "../components/FavoriteMovies";
 import NavBar from "../components/NavBar";
 
 function MoviePrefrencesView() {
@@ -11,9 +10,7 @@ function MoviePrefrencesView() {
       <h2 className="text">
         To like a movie, swipe right. To dislike or skip a movie, swipe left.
       </h2>
-      <div>
-        <FavoriteMovies />
-      </div>
+      <div></div>
     </>
   );
 }

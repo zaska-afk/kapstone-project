@@ -2,7 +2,6 @@ import React from "react";
 
 import NavBar from "../components/NavBar";
 import SciFi from "../assets/SciFi.mp4";
-import MovieGenres from "../components/MovieGenres";
 
 function SciFiChatView() {
   return (
@@ -28,6 +27,7 @@ function SciFiChatView() {
         </video>
 
         <h1 className="home-header">SciFi Movies Chat</h1>
+
         {/* <MovieGenres /> */}
       </div>
     </>

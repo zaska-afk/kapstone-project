@@ -34,7 +34,7 @@ function MovieView() {
         <Card className="login-card"></Card>
         <Card className="login-card">
           <Card.Body>
-            <Card.Title className="title">Comments</Card.Title>
+            <Card.Title className="title">Search Movie</Card.Title>
             <br />
             <Button
               type="submit"
@@ -42,7 +42,7 @@ function MovieView() {
               variant="warning"
               //onClick={testTitleFind}
             >
-              Comment
+              Search
             </Button>
             <br />
           </Card.Body>

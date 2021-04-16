@@ -3,9 +3,9 @@ import { Image, Popover, OverlayTrigger } from "react-bootstrap";
 
 import useStore from "../store";
 
-function NewMovies() {
-  const fetchMovies = useStore((state) => state.fetchUpcomingMovies);
-  const movies = useStore((state) => state.upcomingMovies);
+function ActionMovies() {
+  const fetchMovies = useStore((state) => state.fetchActionMovies);
+  const movies = useStore((state) => state.actionMovies);
   useEffect(() => {
     fetchMovies();
   }, [fetchMovies]);
@@ -42,4 +42,4 @@ function NewMovies() {
     </>
   );
 }
-export default NewMovies;
+export default ActionMovies;
