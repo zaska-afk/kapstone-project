@@ -179,7 +179,17 @@ const useStore = create(
         .then((res) => res.json())
         .then((data) => set({ detailsArray: data }));
     },
-    detailsArray: { results: [] },
+    setPopularMovies: () => {
+      return fetch(
+        "https://api.themoviedb.org/3/movie/popular?api_key=6645eb422ef966984e8f1eade6202ea0&language=en-US&page=1"
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          set({ popularMovies: data });
+          return data;
+        });
+    },
+    popularMovies: {},
   }))
 );
 
