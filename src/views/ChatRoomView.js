@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardDeck, Image } from "react-bootstrap";
+import { Card, CardDeck } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 
 import NavBar from "../components/NavBar";

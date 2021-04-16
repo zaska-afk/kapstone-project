@@ -2,6 +2,7 @@ import React from "react";
 import useStore from "../store.js";
 import Spinner from "react-bootstrap/Spinner";
 
+import FavoriteMovies from "../components/FavoriteMovies";
 import NavBar from "../components/NavBar";
 
 function MoviePrefrencesView() {

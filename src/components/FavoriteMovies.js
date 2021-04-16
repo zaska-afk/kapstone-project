@@ -3,24 +3,24 @@ import { Card, CardDeck } from "react-bootstrap";
 
 import useStore from "../store";
 
-function NewMovies() {
-  const newMovies = useStore((state) => state.upcomingMovies);
-  const newMoviesArray = useStore((state) => state.upcomingArray);
-  const movieImage = useStore((state) => state.movieImage);
+function FavoriteMovies() {
+  const popMovies = useStore((state) => state.popularMovies);
+  const popArray = useStore((state) => state.popularArray);
   useEffect(() => {
-    newMovies();
-  }, [newMovies]);
-  console.log(newMovies);
+    popMovies();
+  }, [popMovies]);
+  console.log(popArray);
   return (
     <>
-      {newMoviesArray.results.map((movie) => {
+      {popArray.results.map((movie) => {
         return (
           <CardDeck>
             <Card>
               <Card.Title>{movie.title}</Card.Title>
               <Card.Subtitle>{movie.release_date}</Card.Subtitle>
               <Card.Body>
-                <Card.Img variant="top" src={movieImage(movie.poster_path)} />
+                <Card.Img variant="top" src={movie.poster_path} />
+                <Card.Img variant="bottom" src={movie.backdrop_path} />
                 {/* <Card.Text>{movie.overview}</Card.Text> */}
               </Card.Body>
             </Card>
@@ -31,4 +31,4 @@ function NewMovies() {
   );
 }
 
-export default NewMovies;
+export default FavoriteMovies;

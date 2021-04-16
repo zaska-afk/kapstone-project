@@ -3,6 +3,8 @@ import { Image } from "react-bootstrap";
 
 import NavBar from "../components/NavBar";
 import Safe from "../assets/Safe.jpg";
+import Messages from "../components/Messages";
+import CreateMessage from "../components/CreateMessage"
 
 function ActionChatView() {
   return (
@@ -40,6 +42,9 @@ function ActionChatView() {
           }}
         />
         <h1 className="home-header">Action Movies Chat</h1>
+
+        <Messages />
+        <CreateMessage />
       </div>
     </>
   );

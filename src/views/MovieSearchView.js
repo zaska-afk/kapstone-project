@@ -3,15 +3,9 @@ import { Card, CardDeck, Button } from "react-bootstrap";
 
 import DirectorChair from "../assets/DirectorChair.mp4";
 import NavBar from "../components/NavBar";
-//import { useStore } from "../store"; //titleFind, movieSynopses
+import MovieInfo from "../components/MovieInfo";
 
 function MovieView() {
-  // function testTitleFind() {
-  //   titleFind()
-  //     .then((data) => movieSynopses(data.results[0].id))
-  //     .then((data) => console.log(data));
-  // }
-
   return (
     <div>
       <NavBar />
@@ -35,15 +29,9 @@ function MovieView() {
 
       <h1 className="movie-header">Movie Search</h1>
       <h3 className="text">Movie Title</h3>
-
+      {/* <MovieInfo /> */}
       <CardDeck className="card-deck">
-        <Card className="login-card">
-          <Card.Body>
-            <Card.Title className="title">Director</Card.Title>
-            <br />
-            <Card.Text>Picture, Synopsis, Actors, Info</Card.Text>
-          </Card.Body>
-        </Card>
+        <Card className="login-card"></Card>
         <Card className="login-card">
           <Card.Body>
             <Card.Title className="title">Comments</Card.Title>
