@@ -170,7 +170,7 @@ const useStore = create(
         `3/search/movie?${apiKey}&language=en-US&query=${query}&page=1&include_adult=false`
       )
         .then((res) => res.json())
-        .then((data) => set({ searchArray: data }));
+        // .then((data) => set({ searchArray: data }));
     },
     searchArray: { results: [] },
 

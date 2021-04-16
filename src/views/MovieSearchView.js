@@ -4,6 +4,7 @@ import { Card, CardDeck, Button } from "react-bootstrap";
 import DirectorChair from "../assets/DirectorChair.mp4";
 import NavBar from "../components/NavBar";
 import MovieInfo from "../components/MovieInfo";
+import SearchBox from "../components/SearchBox"
 
 function MovieView() {
   return (
@@ -31,7 +32,9 @@ function MovieView() {
       <h3 className="text">Movie Title</h3>
       {/* <MovieInfo /> */}
       <CardDeck className="card-deck">
-        <Card className="login-card"></Card>
+        <Card className="login-card">
+                <SearchBox />
+        </Card>
         <Card className="login-card">
           <Card.Body>
             <Card.Title className="title">Search Movie</Card.Title>
