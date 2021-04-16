@@ -1,37 +1,117 @@
 import React from "react";
-import { Button } from "react-bootstrap";
-const messagesDb = [
+
+import { Button, Card } from "react-bootstrap";
+import useStore from "../store";
+
+const commentsDb = [{
+  _id: {
+    $oid: "6075dd360440bb074f2b67a6"
+  },
+  username: "MyManMike",
+  text: "chatroom post test",
+  __v: 0
+}, {
+  _id: {
+    $oid: "6075e10146350707803d4128"
+  },
+  username: "MyManMike",
+  text: "chatroom post test 2",
+  __v: 0
+}, {
+  _id: {
+    $oid: "6075e10a46350707803d4129"
+  },
+  username: "MyManMike",
+  text: "asdf",
+  __v: 0
+}, {
+  _id: {
+    $oid: "6075e11146350707803d412a"
+  },
+  username: "MyManMike",
+  text: "yes.",
+  __v: 0
+}]
+
+
+const usersDb = [
+
   {
-    id: "1",
-    username: "Spidey008",
-    messageText: "hey anyone watch the new Spiderman yet?",
-    date: "4/8/21",
+    _id: {
+      $oid: "6076f1fc8aa4900e409f440c"
+    },
+    likedMovies: [],
+    movieBuddies: [],
+    username: "Meagan",
+    email: "meagan@gmail.com",
+    password: "aaaaaa",
+    __v: 0
   },
   {
-    id: "2",
-    username: "Bella",
-    messageText: "I hate when people talk during a movie",
-    date: "4/8/21",
+    _id: {
+      $oid: "9076f1fc8aa4900e409f440c"
+    },
+    likedMovies: [],
+    movieBuddies: [],
+    username: "Siddiq",
+    email: "siddiq@gmail.com",
+    password: "aaaaaa",
+    __v: 0
   },
   {
-    id: "3",
-    username: "ThirdUser",
-    messageText: "whats going going?",
-    date: "4/8/21",
+    _id: {
+      $oid: "8076f1fc8aa4900e409f440c"
+    },
+    likedMovies: [],
+    movieBuddies: [],
+    username: "Keisha",
+    email: "keisha@gmail.com",
+    password: "aaaaaa",
+    __v: 0
   },
-];
+  {
+    _id: {
+      $oid: "7076f1fc8aa4900e409f440c"
+    },
+    likedMovies: [],
+    movieBuddies: [],
+    username: "Zach",
+    email: "zach@gmail.com",
+    password: "aaaaaa",
+    __v: 0
+  },
+  {
+    _id: {
+      $oid: "6076f1fc8aa4900e409f440c"
+    },
+    likedMovies: [],
+    movieBuddies: [],
+    username: "Anna",
+    email: "anna@gmail.com",
+    password: "aaaaaa",
+    __v: 0
+  }
+]
+
+
 function Messages() {
   return (
     <div>
-      {messagesDb.map((message) => {
+      {commentsDb.map((message) => {
         return (
           <>
-            <Button variant="contained" color="primary">
-              {message.messageText}
-            </Button>
-            {message.date}
-            <br />
-            {message.username}
+            <Card style={{ width: '18rem' }}>
+              
+              <Card.Body>
+                <Card.Title>{message.username}</Card.Title>
+                <Card.Text>
+                  {message.text}
+               </Card.Text>
+                
+              </Card.Body>
+            </Card>
+
+           
           </>
         );
       })}
@@ -39,3 +119,4 @@ function Messages() {
   );
 }
 export default Messages;
+
