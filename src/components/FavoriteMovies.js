@@ -1,30 +1,60 @@
-import React, { useEffect } from "react";
-import { Card, CardDeck } from "react-bootstrap";
+import React, { useEffect, useState, useRef } from "react";
+import { Image, Popover, OverlayTrigger, Button } from "react-bootstrap";
 
 import useStore from "../store";
 
 function FavoriteMovies() {
-  const popMovies = useStore((state) => state.popularMovies);
-  const popArray = useStore((state) => state.popularArray);
+  const fetchPopular = useStore((state) => state.fetchPopularMovies);
+  const movies = useStore((state) => state.popularMovies);
+  //const [show, setShow] = useState(false);
+  const [favMovies, setFavMovies] = useState([]);
+  //const [target, setTarget] = useState(null);
+  //const ref = useRef(null);
   useEffect(() => {
-    popMovies();
-  }, [popMovies]);
-  console.log(popArray);
+    fetchPopular();
+  }, [fetchPopular]);
+
+  const handleClick = (event) => {
+    //setShow(!show);
+    setFavMovies(event.target.favMovies);
+    console.log(setFavMovies);
+  };
+
+  if (!movies) return null;
+
   return (
     <>
-      {popArray.results.map((movie) => {
+      {movies.map((movie) => {
+        const popover = (
+          <Popover id="popover-basic">
+            <Popover.Title as="h3">{movie.title}</Popover.Title>
+            <Popover.Content>
+              <Button size="md" block onClick={handleClick}>
+                Select
+              </Button>
+            </Popover.Content>
+          </Popover>
+        );
         return (
-          <CardDeck>
-            <Card>
-              <Card.Title>{movie.title}</Card.Title>
-              <Card.Subtitle>{movie.release_date}</Card.Subtitle>
-              <Card.Body>
-                <Card.Img variant="top" src={movie.poster_path} />
-                <Card.Img variant="bottom" src={movie.backdrop_path} />
-                {/* <Card.Text>{movie.overview}</Card.Text> */}
-              </Card.Body>
-            </Card>
-          </CardDeck>
+          <>
+            <OverlayTrigger
+              trigger="click"
+              placement="bottom"
+              overlay={popover}
+            >
+              <Image
+                variant="top"
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  maxWidth: "100px",
+                  objectFit: "cover",
+                  padding: "5px",
+                }}
+                src={"https://image.tmdb.org/t/p/w200/" + movie.poster_path}
+              />
+            </OverlayTrigger>
+          </>
         );
       })}
     </>
