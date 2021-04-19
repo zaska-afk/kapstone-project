@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Card } from "react-bootstrap";
+
 import useStore from "../store";
 
 const commentsDb = [{
@@ -93,23 +94,33 @@ const usersDb = [
 
 
 function Messages() {
+  const deleteChat = useStore((state) => state.deleteChat);
+  const getUserRequest = useStore((state) => state.getUserRequest);  
+  const msgRequest = useStore((state) => state.msgRequest);  
+  
+  // const handleDelete = () => {
+  //   deleteChat(getUserRequest.token,id).then(() => {
+  //     // props.getAllOfMessages();
+  //   })
+  // }
   return (
     <div>
-      {commentsDb.map((message) => {
+      {msgRequest.map((message) => {
         return (
           <>
             <Card style={{ width: '18rem' }}>
-              
+
               <Card.Body>
                 <Card.Title>{message.username}</Card.Title>
                 <Card.Text>
-                  {message.text}
-               </Card.Text>
-                
+                  {message.messages}
+                </Card.Text>
+
+                {/* <Button onClick={handleDelete} size="lg" variant="info">Delete Message</Button> */}
               </Card.Body>
             </Card>
 
-           
+
           </>
         );
       })}
@@ -117,4 +128,3 @@ function Messages() {
   );
 }
 export default Messages;
-

@@ -56,9 +56,13 @@ export const newChatRequest = (token, text) => {
   }).then((res) => res.json());
 };
 
-export const deleteChat = (token, username) => {
-  return fetch(baseURL + "users/" + username, {
-    headers: { Authorization: "Bearer " + token },
+
+export const deleteChat = (token, messageId) => {
+  return fetch(baseURL + "messages/" + messageId, {
     method: "DELETE",
-  });
+    headers: {
+      Authorization: "Bearer " + token,
+      "Content-Type": "application/json",
+    },
+  }).then((res) => res.json());
 };

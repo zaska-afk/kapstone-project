@@ -25,6 +25,8 @@ function NewMessage(props) {
                         Username: {user.username}
                     </Form.Label>
                     <br />
+                    <br />
+                    <br/>
                     <Form.Label className="button" htmlFor="displayName">
                         Message:
           </Form.Label>

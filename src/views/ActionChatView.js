@@ -6,6 +6,7 @@ import Safe from "../assets/Safe.jpg";
 import Messages from "../components/Messages";
 import CreateMessage from "../components/CreateMessage"
 
+
 function ActionChatView() {
   return (
     <>
@@ -45,6 +46,7 @@ function ActionChatView() {
 
         <Messages />
         <CreateMessage />
+        
       </div>
     </>
   );
