@@ -169,7 +169,7 @@ const useStore = create(
     movieDetails: (movie_id) => {
       return fetch(movieURL + `3/movie/${movie_id}?${apiKey}&language=en-US`)
         .then((res) => res.json())
-        .then((data) => set({ detailsArray: data }));
+        // .then((data) => set({ detailsArray: data }));
     },
     detailsArray: { results: [] },
     setPopularMovies: () => {
