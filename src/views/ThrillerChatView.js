@@ -1,8 +1,10 @@
 import React from "react";
-import { Image } from "react-bootstrap";
+import { Card, CardDeck, Col } from "react-bootstrap";
 
 import NavBar from "../components/NavBar";
 import Thriller from "../assets/Thriller.mp4";
+import CreateMessage from "../components/CreateMessage";
+import Messages from "../components/Messages";
 
 function ThrillerView() {
   return (
@@ -27,6 +29,16 @@ function ThrillerView() {
           <source src={Thriller} type="video/mp4" />
         </video>
         <h1 className="home-header">Thriller Movies Chat</h1>
+        <CardDeck>
+          <Col>
+            <Card className="chat-view-cards">
+              <Messages />
+            </Card>
+            <Card className="chat-view-cards">
+              <CreateMessage />
+            </Card>
+          </Col>
+        </CardDeck>
       </div>
     </>
   );

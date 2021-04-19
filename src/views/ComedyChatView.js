@@ -1,8 +1,10 @@
 import React from "react";
-import { Image } from "react-bootstrap";
+import { Card, CardDeck, Col } from "react-bootstrap";
 
 import NavBar from "../components/NavBar";
 import Comedy from "../assets/Comedy.mp4";
+import CreateMessage from "../components/CreateMessage";
+import Messages from "../components/Messages";
 
 function ComedyChatView() {
   return (
@@ -15,11 +17,9 @@ function ComedyChatView() {
           muted
           style={{
             position: "absolute",
-            //width: "100%",
             left: "50%",
             top: "60%",
             height: "800px",
-            //objectFit: "cover",
             transform: "translate(-50%, -50%)",
             zIndex: "-1",
           }}
@@ -28,6 +28,16 @@ function ComedyChatView() {
         </video>
 
         <h1 className="home-header">Comedy Movies Chat</h1>
+        <CardDeck>
+          <Col>
+            <Card className="chat-view-cards">
+              <Messages />
+            </Card>
+            <Card className="chat-view-cards">
+              <CreateMessage />
+            </Card>
+          </Col>
+        </CardDeck>
       </div>
     </>
   );
