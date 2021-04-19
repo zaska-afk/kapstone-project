@@ -160,3 +160,25 @@ code {
   max-width: 600px;
   height: 100%;
 }
+
+.results {
+  width: relative;
+  height: 100px;
+  overflow-y: scroll;
+  scrollbar-color: rebeccapurple green;
+  scrollbar-width: thin;
+}
+
+.formBasicSearch {
+  height: auto;
+  width: max-content;
+  position: absolute;
+}
+
+/* .chat-deck {
+  background-image: url(./countDown.gif) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+} */
