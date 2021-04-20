@@ -12,6 +12,14 @@ code {
     monospace;
 }
 
+.buddies-header {
+  white-space: nowrap;
+  width: 100%;
+}
+.buddies-header2 {
+  display: inline-block;
+}
+
 .signin-header {
   margin-top: 20px;
   color: goldenrod;
@@ -34,7 +42,6 @@ code {
   display: flex;
   margin-top: 20px;
   padding: 1em;
-
   justify-content: center;
 }
 
@@ -63,7 +70,7 @@ code {
   height: 200px;
   background-image: linear-gradient(
     90deg,
-    rgba(131, 58, 180, 1) 0%,
+    rgba(252, 176, 69, 1) 0%,
     rgba(253, 29, 29, 1) 50%,
     rgba(252, 176, 69, 1) 100%
   );
@@ -74,6 +81,7 @@ code {
   margin-top: 60px;
   font-weight: bolder;
   font-size: 40px;
+  text-align: center;
 }
 
 .home-header {
@@ -161,6 +169,22 @@ code {
   height: 100%;
 }
 
+
+.results {
+  width: relative;
+  height: 100px;
+  overflow-y: scroll;
+  scrollbar-color: rebeccapurple green;
+  scrollbar-width: thin;
+}
+
+.formBasicSearch {
+  height: auto;
+  width: max-content;
+  position: absolute;
+}
+
+
 .chat-view-cards {
   display: flex;
   padding: 15px;
@@ -170,3 +194,24 @@ code {
   width: 400px;
   margin: 40px;
 }
+
+
+.preferences {
+  display: flex;
+  align-content: center;
+}
+.current-movie {
+  display: flex;
+  max-width: 800px;
+  height: 100%;
+  object-fit: cover;
+  padding: 5px;
+  margin: auto;
+}
+.added-movie {
+  display: block;
+  margin-left: 6rem;
+  background-color: white;
+  align-items: center;
+}
+

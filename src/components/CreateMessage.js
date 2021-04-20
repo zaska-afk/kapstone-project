@@ -7,6 +7,7 @@ function NewMessage(props) {
   const msgRequest = useStore((state) => state.msgRequest);
   const user = useStore((state) => state.user);
   const [formData, setFormData] = useState();
+
   const handleMessage = async (e) => {
     e.preventDefault();
     await newMessageRequest(user.token, formData);

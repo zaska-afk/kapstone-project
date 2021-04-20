@@ -1,6 +1,6 @@
 import React from "react";
 import useStore from "../store.js";
-import Spinner from "react-bootstrap/Spinner";
+import { Image, Spinner, Card } from "react-bootstrap";
 
 import NavBar from "../components/NavBar";
 
@@ -56,46 +56,55 @@ function MoviePrefrencesView() {
     <>
       <NavBar />
 
-      <div className="movieprefrences">
-        <h1>Movie Prefrences</h1>
-        <h3>
-          Press the arrow keys on your keyboard. Left to skip, Right to add to
-          your favorite movie list.
+      <div>
+        <h1 className="movie-header">Movie Preferences</h1>
+        <h3 className="text">
+          Press Left Arrow to skip, Right to add to your favorite movie list.
         </h3>
-        <h2>Do you like this movie?</h2>
-        <div className="currentMovie">
-          {isLoading == true ? (
+        <h2 className="title">Do you like this movie?</h2>
+        <div>
+          {isLoading === true ? (
             <Spinner animation="border" role="status">
               <span className="sr-only">Loading...</span>
             </Spinner>
           ) : (
-            <>
-              {currentMovie.title}
-
-              <img
-                className="currentMovie"
-                src={
-                  "https://image.tmdb.org/t/p/w500/" + currentMovie.poster_path
-                }
-              />
-            </>
+            <div>
+              <h2 className="text">{currentMovie.title}</h2>
+              <br />
+              <div
+                id="topcontainer"
+                style={{ align: "center" }}
+                class="current-movie"
+              >
+                <Card className="current-movie">
+                  <Card.Img
+                    style={{ align: "center" }}
+                    src={
+                      "https://image.tmdb.org/t/p/w500/" +
+                      currentMovie.backdrop_path
+                    }
+                    alt="backdrop"
+                  />
+                </Card>
+              </div>
+            </div>
           )}
         </div>
 
         <br></br>
-        <h2>Below are the movies you like!</h2>
-        {/* <div> 
 
-          {user.likedMovies.push(myMovie)}
-        </div> */}
-        <div>
+        <h2 className="title">Below are the movies you like!</h2>
+        <div className="added-movie">
+
           {movies.map((myMovie) => {
             return (
-              <img
-                className="currentMovie"
-                src={"https://image.tmdb.org/t/p/w500/" + myMovie.poster_path}
-                key={myMovie[0]}
-              />
+              <>
+                <Image
+                  src={"https://image.tmdb.org/t/p/w200/" + myMovie.poster_path}
+                  key={myMovie[0]}
+                  alt="backdrop"
+                />
+              </>
             );
           })}
         </div>
