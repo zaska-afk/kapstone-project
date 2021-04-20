@@ -37,7 +37,7 @@ function ActionChatView() {
         <Card className="chat-view-cards">
           <CreateMessage />
         </Card>
-        {/* <ActionMovies /> */}
+        <ActionMovies />
       </div>
     </>
   );

@@ -6,6 +6,22 @@ const baseURL = "https://socialapp-api.herokuapp.com/";
 const apiKey = "api_key=6645eb422ef966984e8f1eade6202ea0";
 const ourURL = "http://localhost:3000/";
 
+const fetchPage = async (pageNumber) => {
+  const res = await fetch(
+    movieURL + `3/movie/upcoming?${apiKey}&language=en-US&page=${pageNumber}`
+  );
+  const data = res.json();
+  return data;
+};
+
+const fetchMovieDetails = async (movie_id) => {
+  const res = await fetch(
+    movieURL + `3/movie/${movie_id}?${apiKey}&language=en-US`
+  );
+  const data = res.json();
+  return data;
+};
+
 // define the store's initial state
 const useStore = create(
   devtools((set) => ({
@@ -100,14 +116,6 @@ const useStore = create(
     //Movie URLs
 
     fetchUpcomingMovies: async () => {
-      const fetchPage = async (pageNumber) => {
-        const res = await fetch(
-          movieURL +
-            `3/movie/upcoming?${apiKey}&language=en-US&page=${pageNumber}`
-        );
-        const data = res.json();
-        return data;
-      };
       const fetchPages = [];
       for (let i = 1; i <= 5; i++) {
         fetchPages.push(fetchPage(i));
@@ -118,14 +126,6 @@ const useStore = create(
     upcomingMovies: [],
 
     fetchPopularMovies: async () => {
-      const fetchPage = async (pageNumber) => {
-        const res = await fetch(
-          movieURL +
-            `3/movie/popular?${apiKey}&language=en-US&page=${pageNumber}`
-        );
-        const data = res.json();
-        return data;
-      };
       const fetchPages = [];
       for (let i = 1; i <= 5; i++) {
         fetchPages.push(fetchPage(i));
@@ -137,27 +137,19 @@ const useStore = create(
 
     ///////////////////////////////////////////////////////////////////
     fetchActionMovies: async () => {
-      const fetchPage = async (movie_id) => {
-        const res = await fetch(
-          movieURL + `3/movie/${movie_id}?${apiKey}&language=en-US`
-        );
-        const data = res.json();
-        return data;
-      };
-      const movieId = [390054, 548897, 522931, 664767, 9257];
-      // const fetchId = [];
-      // for (let i = 0; i <= 5; i++) {
-      //   fetchId.push(fetchPage(i));
-      // }
-      const pages = await Promise.all(movieId);
-      console.log("hi", pages);
-      set({ actionMovies: pages.flatMap((page) => page.results) });
-      console.log(
-        "here",
-        pages.flatMap((page) => page.results)
-      );
+      const movieIds = [390054, 548897, 522931, 664767, 9257];
+      const moviesFetch = movieIds.map((id) => fetchMovieDetails(id));
+      const results = await Promise.all(moviesFetch);
+      set({ actionMovies: results });
     },
     actionMovies: [],
+
+    fetchMovieDetails: (movie_id) => {
+      return fetch(movieURL + `3/movie/${movie_id}?${apiKey}&language=en-US`)
+        .then((res) => res.json())
+        .then((data) => set({ detailsArray: data }));
+    },
+    detailsArray: { results: [] },
 
     /////////////////////////////////////////////////////////////////////////
 
@@ -170,12 +162,6 @@ const useStore = create(
     },
     searchArray: { results: [] },
 
-    movieDetails: (movie_id) => {
-      return fetch(movieURL + `3/movie/${movie_id}?${apiKey}&language=en-US`)
-        .then((res) => res.json())
-        .then((data) => set({ detailsArray: data }));
-    },
-    detailsArray: { results: [] },
     setPopularMovies: () => {
       return fetch(
         "https://api.themoviedb.org/3/movie/popular?api_key=6645eb422ef966984e8f1eade6202ea0&language=en-US&page=1"

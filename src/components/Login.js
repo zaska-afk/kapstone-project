@@ -8,6 +8,7 @@ function Login(props) {
   const loginRequest = useStore((state) => state.loginRequest);
   const history = useHistory();
   const [formData, setFormData] = useState({});
+
   const handleLogin = (event) => {
     event.preventDefault();
     loginRequest(formData.username, formData.password).then((userData) => {
