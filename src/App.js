@@ -21,6 +21,7 @@ import KidsChatView from "./views/KidsChatView";
 import SciFiChatView from "./views/SciFiChatView";
 import ThrillerChatView from "./views/ThrillerChatView";
 import UpcomingChatView from "./views/UpcomingChatView";
+import MovieDetailsView from "./views/MovieDetailsView";
 //import useStore from "./store";
 
 function App() {
@@ -31,7 +32,8 @@ function App() {
         <Route path="/home" component={HomeView} />
         <Route path="/profile/:username" component={ProfileView} />
         <Route path="/buddies" component={MovieBuddiesView} />
-        <Route path="/movies" component={MovieSearchView} />
+        <Route exact path="/movies" component={MovieSearchView} />
+        <Route path="/movies/:movieId" component={MovieDetailsView} />
         <Route path="/survey" component={SurveyView} />
         <Route path="/upcoming" component={UpcomingMovieView} />
         <Route exact path="/chatrooms" component={ChatRoomView} />

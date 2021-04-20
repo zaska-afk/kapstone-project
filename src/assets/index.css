@@ -169,6 +169,22 @@ code {
   height: 100%;
 }
 
+
+.results {
+  width: relative;
+  height: 100px;
+  overflow-y: scroll;
+  scrollbar-color: rebeccapurple green;
+  scrollbar-width: thin;
+}
+
+.formBasicSearch {
+  height: auto;
+  width: max-content;
+  position: absolute;
+}
+
+
 .chat-view-cards {
   display: flex;
   padding: 15px;
@@ -178,6 +194,7 @@ code {
   width: 400px;
   margin: 40px;
 }
+
 
 .preferences {
   display: flex;
@@ -206,3 +223,4 @@ code {
   width: 100%;
   text-align: center;
 }
+
