@@ -4,6 +4,7 @@ import { devtools } from "zustand/middleware";
 const movieURL = "https://api.themoviedb.org/";
 const baseURL = "https://socialapp-api.herokuapp.com/";
 const apiKey = "api_key=6645eb422ef966984e8f1eade6202ea0";
+const initialState = { user: { token: "" }, messages: [] };
 
 // define the store's initial state
 const useStore = create(
@@ -45,8 +46,9 @@ const useStore = create(
       return fetch(baseURL + "users/" + username).then((res) => res.json());
     },
     msgRequest: () => {
-      return fetch(baseURL + "messages", {}).then((res) => res.json());
-    },
+      return fetch(baseURL + "messages", {}).then((res) => res.json()).then((data)=>{set({messages:data.messages})})
+    }, messages: [],
+
     singleMessage: () => {
       return fetch(baseURL + "messages/1", {}).then((res) => res.json());
     },
@@ -58,16 +60,18 @@ const useStore = create(
           "Content-Type": "application/json",
         },
 
+
+
         body: JSON.stringify({
           text,
         }),
       }).then((res) => res.json());
     },
-    deleteMessage: (token, username) =>
-      fetch(baseURL + "users/" + username, {
-        headers: { Authorization: "Bearer " + token },
-        method: "DELETE",
-      }),
+    // deleteMessage: (token, username) =>
+    //   fetch(baseURL + "users/" + username, {
+    //     headers: { Authorization: "Bearer " + token },
+    //     method: "DELETE",
+    //   }),
     deleteChat: (token, messageId) => {
       return fetch(baseURL + "messages/" + messageId, {
         method: "DELETE",
@@ -106,7 +110,7 @@ const useStore = create(
       const fetchPage = async (pageNumber) => {
         const res = await fetch(
           movieURL +
-            `3/movie/upcoming?${apiKey}&language=en-US&page=${pageNumber}`
+          `3/movie/upcoming?${apiKey}&language=en-US&page=${pageNumber}`
         );
         const data = res.json();
         return data;
@@ -124,7 +128,7 @@ const useStore = create(
       const fetchPage = async (pageNumber) => {
         const res = await fetch(
           movieURL +
-            `3/movie/popular?${apiKey}&language=en-US&page=${pageNumber}`
+          `3/movie/popular?${apiKey}&language=en-US&page=${pageNumber}`
         );
         const data = res.json();
         return data;
@@ -170,7 +174,7 @@ const useStore = create(
         `3/search/movie?${apiKey}&language=en-US&query=${query}&page=1&include_adult=false`
       )
         .then((res) => res.json())
-        // .then((data) => set({ searchArray: data }));
+      // .then((data) => set({ searchArray: data }));
     },
     searchArray: { results: [] },
 

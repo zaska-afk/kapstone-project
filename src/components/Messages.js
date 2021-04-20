@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { Button, Card } from "react-bootstrap";
 
@@ -95,19 +95,30 @@ const usersDb = [
 ]
 
 
-function Messages() {
+function Messages(props) {
+  const user = useStore((state) => state.user);
+
   const deleteChat = useStore((state) => state.deleteChat);
-  const getUserRequest = useStore((state) => state.getUserRequest);  
-  const msgRequest = useStore((state) => state.msgRequest);  
-  
-  // const handleDelete = () => {
-  //   deleteChat(getUserRequest.token,id).then(() => {
-  //     // props.getAllOfMessages();
-  //   })
+  const getUserRequest = useStore((state) => state.getUserRequest);
+  const msgRequest = useStore((state) => state.msgRequest);
+  const messages = useStore((state) => state.messages);
+
+  useEffect(
+    (e) => {
+      msgRequest()
+    }, [msgRequest]
+  );
+
+  // const handleDelete = async (e) => {
+  //   e.preventDefault()
+  //   await deleteChat(props.id, user.token)
+  //     .then(() => {
+  //       props.message([]);
+  //     })
   // }
   return (
     <div>
-      {msgRequest.map((message) => {
+      {messages && messages.map((message) => {
         return (
           <>
             <Card style={{ width: '18rem' }}>
@@ -115,7 +126,7 @@ function Messages() {
               <Card.Body>
                 <Card.Title>{message.username}</Card.Title>
                 <Card.Text>
-                  {message.messages}
+                  {message.text}
                 </Card.Text>
 
                 {/* <Button onClick={handleDelete} size="lg" variant="info">Delete Message</Button> */}
