@@ -1,4 +1,5 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
+import { Input } from "react-bootstrap";
 import useStore from "../store";
 
 import {Form} from "react-bootstrap";
@@ -6,6 +7,7 @@ import { Link } from 'react-router-dom';
 
 const SearchBox = () => {
   const [search, setsearch] = useState({});
+
 const [userInput, setuserInput] = useState("")
 const movieSearch = useStore((state) => {
     return state.movieSearch
@@ -49,6 +51,7 @@ const movieDetails = useStore((state) => {
             </div>
           )}
         </div>
+
     </>
   );
 };

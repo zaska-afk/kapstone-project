@@ -4,6 +4,7 @@ import { devtools } from "zustand/middleware";
 const movieURL = "https://api.themoviedb.org/";
 const baseURL = "https://socialapp-api.herokuapp.com/";
 const apiKey = "api_key=6645eb422ef966984e8f1eade6202ea0";
+const ourURL = "http://localhost:3000/";
 
 // define the store's initial state
 const useStore = create(
@@ -11,7 +12,7 @@ const useStore = create(
     //Our DB URL
     // Login/logout APIs
     loginRequest: (username, password) =>
-      fetch(`${baseURL}auth/login`, {
+      fetch(`${ourURL}auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -25,11 +26,11 @@ const useStore = create(
           return user;
         }),
     logoutRequest: (token) =>
-      fetch(`${baseURL}auth/logout`, {
+      fetch(`${ourURL}auth/logout`, {
         headers: { Authorization: `Bearer ${token}` },
       }).then((res) => res.json()),
     createUser: (username, displayName, password) =>
-      fetch(`${baseURL}users`, {
+      fetch(`${ourURL}users`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -47,6 +48,10 @@ const useStore = create(
     },
     msgRequest: () => {
       return fetch(baseURL + "messages", {}).then((res) => res.json());
+    },
+
+    getAllUsers: () => {
+      return fetch(baseURL + "users").then((res) => res.json());
     },
     singleMessage: () => {
       return fetch(baseURL + "messages/1", {}).then((res) => res.json());
@@ -160,9 +165,8 @@ const useStore = create(
       return fetch(
         movieURL +
           `3/search/movie?${apiKey}&language=en-US&query=${query}&page=1&include_adult=false`
-      )
-        .then((res) => res.json())
-        // .then((data) => set({ searchArray: data }));
+      ).then((res) => res.json());
+      // .then((data) => set({ searchArray: data }));
     },
     searchArray: { results: [] },
 

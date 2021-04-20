@@ -45,7 +45,7 @@ const SignUp = (props) => {
             />
           </Form.Group>
           <Form.Group>
-            <label>Display Name</label>
+            <label>Email</label>
             <input
               type="text"
               name="displayName"
