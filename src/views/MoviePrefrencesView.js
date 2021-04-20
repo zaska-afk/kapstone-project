@@ -92,8 +92,10 @@ function MoviePrefrencesView() {
         </div>
 
         <br></br>
+
         <h2 className="title">Below are the movies you like!</h2>
         <div className="added-movie">
+
           {movies.map((myMovie) => {
             return (
               <>

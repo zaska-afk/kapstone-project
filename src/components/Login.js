@@ -12,7 +12,7 @@ function Login(props) {
   const handleLogin = (event) => {
     event.preventDefault();
     loginRequest(formData.username, formData.password).then((userData) => {
-      if (userData.statusCode === 200) history.push("/home");
+      if (userData.statusCode === 201) history.push("/home");
     });
   };
 
