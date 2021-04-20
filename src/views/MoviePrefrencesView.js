@@ -84,6 +84,10 @@ function MoviePrefrencesView() {
 
         <br></br>
         <h2>Below are the movies you like!</h2>
+        {/* <div> 
+
+          {user.likedMovies.push(myMovie)}
+        </div> */}
         <div>
           {movies.map((myMovie) => {
             return (
@@ -96,7 +100,6 @@ function MoviePrefrencesView() {
           })}
         </div>
       </div>
-
     </>
   );
 }
