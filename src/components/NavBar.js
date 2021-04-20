@@ -19,6 +19,9 @@ function NavBar() {
             <LinkContainer to="/home">
               <Nav.Link>Home</Nav.Link>
             </LinkContainer>
+            <LinkContainer to="/survey">
+              <Nav.Link>Survey</Nav.Link>
+            </LinkContainer>
             <LinkContainer to="/profile">
               <Nav.Link>Profile</Nav.Link>
             </LinkContainer>

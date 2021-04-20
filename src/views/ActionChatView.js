@@ -30,16 +30,13 @@ function ActionChatView() {
           <source src={Action} type="video/mp4" />
         </video>
         <h1 className="home-header">Action Movies Chat</h1>
-        <CardDeck>
-          <Col>
-            <Card className="chat-view-cards">
-              <Messages />
-            </Card>
-            <Card className="chat-view-cards">
-              <CreateMessage />
-            </Card>
-          </Col>
-        </CardDeck>
+
+        <Card className="chat-view-cards">
+          <Messages />
+        </Card>
+        <Card className="chat-view-cards">
+          <CreateMessage />
+        </Card>
         {/* <ActionMovies /> */}
       </div>
     </>
