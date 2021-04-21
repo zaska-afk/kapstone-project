@@ -9,8 +9,11 @@ function MoviePrefrencesView() {
   const [currentMovie, setCurrentMovie] = useState({});
   const [movies, likedMovies] = useState([]);
 
+  const setLikedMovies = useStore((state) => state.setLikedMovies);
   const setPopularMovies = useStore((state) => state.setPopularMovies);
   const popularMovies = useStore((state) => state.popularMovies);
+
+  const user = useStore((state) => state.user.user);
 
   //  results.title  and results.poster_path  and results.vote_average
   const [isLoading, setisLoading] = useState(true);
@@ -46,6 +49,8 @@ function MoviePrefrencesView() {
   const keypress = (e) => {
     if (e.keyCode === 39) {
       likedMovies((movies) => [...movies, currentMovie]);
+      console.log(user);
+      setLikedMovies(currentMovie, user._id);
       nextMovie();
     } else if (e.keyCode === 37) {
       nextMovie();
@@ -95,7 +100,6 @@ function MoviePrefrencesView() {
 
         <h2 className="title">Below are the movies you like!</h2>
         <div className="added-movie">
-
           {movies.map((myMovie) => {
             return (
               <>

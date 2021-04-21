@@ -248,6 +248,18 @@ const useStore = create(
         });
     },
     popularMovies: {},
+
+    setLikedMovies: (movie, id) => {
+      fetch(baseURL + `users/${id}/likedmovies`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          movie,
+        }),
+      }).then((res) => res.json());
+    },
   }))
 );
 
