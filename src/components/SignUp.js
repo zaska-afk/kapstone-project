@@ -14,7 +14,8 @@ const SignUp = (props) => {
     e.preventDefault();
     await setCreateUser(formData.username, formData.email, formData.password);
     const loginData = await loginRequest(formData.username, formData.password);
-    loginData.token ? history.push("/survey") : history.push("/");
+    console.log(loginData);
+    loginData.user._id ? history.push("/survey") : history.push("/");
   };
 
   const handleChange = (e) => {
