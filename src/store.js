@@ -29,9 +29,7 @@ const useStore = create(
     //Our DB URL
     // Login/logout APIs
     loginRequest: (username, password) =>
-
       fetch(`${baseURL}users/login`, {
-
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -51,7 +49,6 @@ const useStore = create(
 
     createUser: (username, email, password) =>
       fetch(`${baseURL}users`, {
-
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -206,11 +203,11 @@ const useStore = create(
     },
     searchArray: { results: [] },
 
-
     movieDetails: (movie_id) => {
-      return fetch(movieURL + `3/movie/${movie_id}?${apiKey}&language=en-US`)
-        .then((res) => res.json())
-        // .then((data) => set({ detailsArray: data }));
+      return fetch(
+        movieURL + `3/movie/${movie_id}?${apiKey}&language=en-US`
+      ).then((res) => res.json());
+      // .then((data) => set({ detailsArray: data }));
     },
     detailsArray: { results: [] },
 
