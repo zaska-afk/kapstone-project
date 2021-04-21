@@ -1,11 +1,18 @@
-import React from "react";
-import { Card, Button, CardDeck, Image } from "react-bootstrap";
+import React, { useEffect } from "react";
+import { Card, Button, CardDeck } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 
 import Minion from "../assets/Minion.jpg";
+import useStore from "../store";
 
-function MovieBuddies({ user }) {
+function MovieBuddies(props) {
+  const postMovieBuddies = useStore((state) => state.postMovieBuddies);
+  const user = useStore((state) => state.user.user);
   const history = useHistory();
+
+  function addMovieBuddie() {
+    postMovieBuddies(user._id, props.user);
+  }
 
   return (
     <>
@@ -21,24 +28,21 @@ function MovieBuddies({ user }) {
               roundedCircle
             />
             <Card.Title className="buddies-header2">
-              Username: {user.username}
+              Username: {props.user.username}
             </Card.Title>
           </Card.Header>
           <Card.Body>
             <Card.Text>
-              {user.email}
-              {user.likedMovies}
+              Email: {props.user.email}
+              Liked Movies: {user.likedMovies}
             </Card.Text>
             <Button
-              onClick={() => history.push(`/profile/${user.username}`)}
+              onClick={() => history.push(`/profile/${props.user._id}`)}
               variant="warning"
             >
               See Buddie Profile
             </Button>
-            <Button
-              onClick={() => history.push(`/buddies/${user.movieBuddies}`)}
-              variant="dark"
-            >
+            <Button onClick={addMovieBuddie} variant="dark">
               Add Buddie
             </Button>
           </Card.Body>

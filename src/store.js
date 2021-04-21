@@ -5,7 +5,6 @@ const movieURL = "https://api.themoviedb.org/";
 const baseURL = "http://localhost:3000/";
 // const baseURL = "https://socialapp-api.herokuapp.com/";
 const apiKey = "api_key=6645eb422ef966984e8f1eade6202ea0";
-const ourURL = "http://localhost:3000/";
 
 const fetchPage = async (pageNumber) => {
   const res = await fetch(
@@ -29,9 +28,7 @@ const useStore = create(
     //Our DB URL
     // Login/logout APIs
     loginRequest: (username, password) =>
-
       fetch(`${baseURL}users/login`, {
-
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -45,13 +42,12 @@ const useStore = create(
           return user;
         }),
     logoutRequest: (token) =>
-      fetch(`${ourURL}auth/logout`, {
+      fetch(`${baseURL}auth/logout`, {
         headers: { Authorization: `Bearer ${token}` },
       }).then((res) => res.json()),
 
     createUser: (username, email, password) =>
       fetch(`${baseURL}users`, {
-
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -71,9 +67,36 @@ const useStore = create(
       return fetch(baseURL + "messages", {}).then((res) => res.json());
     },
 
-    getAllUsers: () => {
-      return fetch(baseURL + "users").then((res) => res.json());
+    fetchAllUsers: async () => {
+      fetch(baseURL + "users")
+        .then((res) => res.json())
+        .then((users) => {
+          set({ allUsers: users.user });
+        });
     },
+    allUsers: [],
+
+    fetchMovieBuddies: async (id) => {
+      fetch(baseURL + `users/${id}/moviebuddies`)
+        .then((res) => res.json())
+        .then((users) => {
+          set({ movieBuddies: users.movieBuddies });
+        });
+    },
+    movieBuddies: [],
+
+    postMovieBuddies: async (id, user) => {
+      fetch(baseURL + `users/${id}/moviebuddies`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          user,
+        }),
+      }).then((res) => res.json());
+    },
+
     singleMessage: () => {
       return fetch(baseURL + "messages/1", {}).then((res) => res.json());
     },
@@ -206,11 +229,11 @@ const useStore = create(
     },
     searchArray: { results: [] },
 
-
     movieDetails: (movie_id) => {
-      return fetch(movieURL + `3/movie/${movie_id}?${apiKey}&language=en-US`)
-        .then((res) => res.json())
-        // .then((data) => set({ detailsArray: data }));
+      return fetch(
+        movieURL + `3/movie/${movie_id}?${apiKey}&language=en-US`
+      ).then((res) => res.json());
+      // .then((data) => set({ detailsArray: data }));
     },
     detailsArray: { results: [] },
 

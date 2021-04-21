@@ -169,7 +169,6 @@ code {
   height: 100%;
 }
 
-
 .results {
   width: relative;
   height: 100px;
@@ -184,7 +183,6 @@ code {
   position: absolute;
 }
 
-
 .chat-view-cards {
   display: flex;
   padding: 15px;
@@ -194,7 +192,6 @@ code {
   width: 400px;
   margin: 40px;
 }
-
 
 .preferences {
   display: flex;
@@ -215,3 +212,20 @@ code {
   align-items: center;
 }
 
+.form-buffer {
+  margin: 30px 0px;
+  background-image: linear-gradient(
+    90deg,
+    rgba(252, 176, 69, 1) 0%,
+    rgba(253, 29, 29, 1) 50%,
+    rgba(252, 176, 69, 1) 100%
+  );
+}
+.form-label {
+  font: linear-gradient(
+    90deg,
+    rgba(252, 176, 69, 1) 0%,
+    rgba(253, 29, 29, 1) 50%,
+    rgba(252, 176, 69, 1) 100%
+  );
+}

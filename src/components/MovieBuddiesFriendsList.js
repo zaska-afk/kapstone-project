@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Card, Button, CardDeck } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 
+import useStore from "../store";
 import Minion from "../assets/Minion.jpg";
 
-function MovieBuddies({ user }) {
+function MovieBuddiesFriendsList(props) {
   const history = useHistory();
+  const fetchMovieBuddies = useStore((state) => state.fetchMovieBuddies);
+  const movieBuddies = useStore((state) => state.movieBuddies);
+  const user = useStore((state) => state.user);
 
   return (
     <>
@@ -21,16 +25,16 @@ function MovieBuddies({ user }) {
               roundedCircle
             />
             <Card.Title className="buddies-header2">
-              Username: {user.username}
+              Username: {props.user.username}
             </Card.Title>
           </Card.Header>
           <Card.Body>
             <Card.Text>
-              {user.email}
-              {user.likedMovies}
+              {props.user.email}
+              {props.user.likedMovies}
             </Card.Text>
             <Button
-              onClick={() => history.splice(`/buddies/${user.movieBuddies}`, 1)}
+              //onClick={() => movieBuddies.splice(`/buddies/${user.movieBuddies}`, 1)}
               variant="dark"
             >
               Delete Buddie
@@ -42,4 +46,4 @@ function MovieBuddies({ user }) {
   );
 }
 
-export default MovieBuddies;
+export default MovieBuddiesFriendsList;

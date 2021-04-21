@@ -1,21 +1,29 @@
-import React, { useEffect, useState } from "react";
-import { Image, Card } from "react-bootstrap";
+import React, { useEffect } from "react";
+import { Image, Card, Button, CardDeck } from "react-bootstrap";
 
 import NavBar from "../components/NavBar";
 import CoupleWatching from "../assets/CoupleWatching.jpg";
 import useStore from "../store";
 import MovieBuddies from "../components/MovieBuddies";
+import Minion from "../assets/Minion.jpg";
 import MovieBuddiesFriendsList from "../components/MovieBuddiesFriendsList";
 
+//import MovieBuddiesFriendsList from "../components/MovieBuddiesFriendsList";
+
 function MovieBuddiesView() {
-  const [allUsers, setAllUsers] = useState([]);
-  const fetchAllUsers = useStore((state) => state.getAllUsers);
+  const fetchAllUsers = useStore((state) => state.fetchAllUsers);
+  const allUsers = useStore((state) => state.allUsers);
+  const fetchMovieBuddies = useStore((state) => state.fetchMovieBuddies);
+  const movieBuddies = useStore((state) => state.movieBuddies);
+  const user = useStore((state) => state.user.user);
 
   useEffect(() => {
-    fetchAllUsers().then((data) => {
-      setAllUsers(data.users);
-    });
-  }, [allUsers]);
+    fetchMovieBuddies(user._id);
+  }, []);
+
+  useEffect(() => {
+    fetchAllUsers();
+  }, [fetchAllUsers]);
 
   return (
     <>
@@ -44,18 +52,13 @@ function MovieBuddiesView() {
         >
           {allUsers &&
             allUsers.map((user) => {
-              return <MovieBuddies user={user} key={user.username} />;
+              return <MovieBuddies user={user} key={user._id} />;
             })}
-          npme
+
           <Card>
-            {allUsers &&
-              allUsers.map((user) => {
-                return (
-                  <MovieBuddiesFriendsList
-                    user={user}
-                    key={user.movieBuddies}
-                  />
-                );
+            {movieBuddies &&
+              movieBuddies.map((user) => {
+                return <MovieBuddiesFriendsList user={user.user} />;
               })}
           </Card>
         </div>
