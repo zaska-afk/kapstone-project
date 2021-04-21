@@ -5,10 +5,10 @@ import { Card, CardDeck, Row, Image } from "react-bootstrap";
 import NavBar from "../components/NavBar";
 import Popcorn from "../assets/Popcorn.mp4";
 import Minion from "../assets/Minion.jpg";
-import MovieReview from "../assets/MovieReview.jpg";
+import MovieReview from "../assets/MovieReview.png";
 import AtTheMovies from "../assets/AtTheMovies.jpg";
-import UpcomingMovies from "../assets/UpcomingMovies.jpg";
-import FilmReel from "../assets/FilmReel.jpg";
+import UpcomingMovies from "../assets/UpcomingMovies.png";
+import FilmReel from "../assets/FilmReel.png";
 
 function HomeView() {
   return (
