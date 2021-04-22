@@ -23,6 +23,8 @@ const fetchMovieDetails = async (movie_id) => {
   return data;
 };
 
+
+
 // define the store's initial state
 const useStore = create(
   devtools((set) => ({
@@ -59,6 +61,7 @@ const useStore = create(
         }),
       }).then((res) => res.json()),
     user: {},
+
 
     //messages/comments
 
@@ -274,6 +277,19 @@ const useStore = create(
     },
     popularMovies: {},
 
+     updateUser: (username, password, Email, token) => (
+      fetch(`${baseURL}users/${username}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...{ username, Email },
+          ...(password ? { password } : {})
+        }),
+      }).then((res) => res.json())
+    )
+
     setLikedMovies: (movie, id) => {
       fetch(baseURL + `users/${id}/likedmovies`, {
         method: "POST",
@@ -289,8 +305,10 @@ const useStore = create(
           set({ user: user });
         });
     },
+
   }))
 );
+
 
 export default useStore;
 // trying
