@@ -108,9 +108,11 @@ function Messages() {
       {commentsDb.map((message) => {
         return (
           <>
-            <Card style={{ width: "18rem" }}>
+            <Card className="message-card">
               <Card.Body>
-                <Card.Title>{message.username}</Card.Title>
+                <Card.Title>
+                  <b>{message.username}</b>
+                </Card.Title>
                 <Card.Text>{message.text}</Card.Text>
               </Card.Body>
             </Card>
