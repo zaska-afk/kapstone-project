@@ -1,23 +1,25 @@
 import React, { useEffect, useState } from 'react';
-import { updateUser,  useStore } from '../store';
+import  useStore  from '../store';
 import { InputGroup, Button, Form}  from 'react-bootstrap';
 
 function Profile() {
     const user = useStore((state) => state.user);
     const [formData, setFormData] = useState({
-      userName: '',
+      username: '',
       password: '',
       Email: '',
     });
 
 
+const getUserRequest = useStore((state) => state.getUserRequest)
+const updateUser = useStore((state) => state.updateUser)
 
     const syncFormToApi = () => {
         if (user.username)
         getUserRequest(user.username).then((userData) => {
               setFormData((prev) => ({
                 ...prev,
-                username: userData.user.userName,
+                username: userData.user.username,
                 email: userData.user.email,
                 password: '',
               }));
@@ -38,7 +40,7 @@ function Profile() {
 
   const submitForm = (event) => {
     event.preventDefault();
-    updateUser(user.username, formData.password, formData.displayName, formData.about, user.token)
+    updateUser(user.username, formData.password, formData.username, formData.about, user.token)
       .then(() => {
         syncFormToApi();
       });
@@ -52,10 +54,10 @@ function Profile() {
             <Form id="update-user" onSubmit={submitForm}>
               <Form.Group>
                 <label> User Name *</label>
-                <Input
-                  name="displayName"
-                  placeholder="Display Name"
-                  value={formData.displayName}
+                <input
+                  name="username"
+                  placeholder="user Name"
+                  value={formData.username}
                   required
                   pattern=".{3,}"
                   onChange={updateForm}
@@ -63,7 +65,7 @@ function Profile() {
               </Form.Group>
               <Form.Group>
                 <label>New Password (Optional)</label>
-                <InputGroup placeholder="New Password" 
+                <input placeholder="New Password" 
                   name="password"
                   value={formData.password}
                   type="password" 
@@ -73,8 +75,8 @@ function Profile() {
               </Form.Group>
               <Form.Group>
                 <label> Email (Optional)</label>
-                <InputGroup placeholder="New Email" 
-                  name="email"
+                <input placeholder="New Email" 
+                  name="Email"
                   value={formData.Email}
                   type="email" 
                   pattern= ".{3,}"
