@@ -1,7 +1,7 @@
-
 import React, { useEffect } from "react";
 import useStore from "../store";
 import { Card, Button, CardDeck } from "react-bootstrap";
+import EditProfile from "./EditProfile";
 
 function Profile(props) {
   const user = useStore((state) => state.user.user);
@@ -12,6 +12,11 @@ function Profile(props) {
   useEffect(() => {
     fetchMovieBuddies(user._id);
   }, [fetchMovieBuddies, user._id]);
+
+  const handleEditProfile = async (e) => {
+    e.preventDefault();
+    await EditProfile();
+  };
 
   return (
     <div>
@@ -62,7 +67,9 @@ function Profile(props) {
                 </Card>
               </CardDeck>
               <br />
-              <Button variant="warning">Edit Profile</Button>
+              <Button variant="warning" onClick={handleEditProfile}>
+                Edit Profile
+              </Button>
             </Card.Body>
           </Card>
         </CardDeck>

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Image, Card, CardGroup } from "react-bootstrap";
+import { Image, Card } from "react-bootstrap";
 
 import NavBar from "../components/NavBar";
 import CoupleWatching from "../assets/CoupleWatching.jpg";
