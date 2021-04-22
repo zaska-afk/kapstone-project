@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 
 import { Button, Card } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
 
 import useStore from "../store";
 
@@ -104,12 +105,15 @@ function Messages(props) {
   const getUserRequest = useStore((state) => state.getUserRequest);
   const msgRequest = useStore((state) => state.msgRequest);
   const messages = useStore((state) => state.messages);
-
+  console.log(messages);
+  const history = useHistory();
   useEffect(
     (e) => {
-      msgRequest();
+      console.log(history.location);
+      const location = history.location.pathname;
+      msgRequest(location);
     },
-    [msgRequest]
+    [msgRequest, messages]
   );
 
   // const handleDelete = async (e) => {
@@ -120,15 +124,15 @@ function Messages(props) {
   //     })
   // }
   return (
-    <div>
+    <>
       {messages &&
         messages.map((message) => {
           return (
             <>
               <Card style={{ width: "18rem" }}>
                 <Card.Body>
-                  <Card.Title>{message.username}</Card.Title>
-                  <Card.Text>{message.text}</Card.Text>
+                  <Card.Title>{message.Comments.username}</Card.Title>
+                  <Card.Text>{message.Comments.text}</Card.Text>
 
                   {/* <Button onClick={handleDelete} size="lg" variant="info">Delete Message</Button> */}
                 </Card.Body>
@@ -136,7 +140,7 @@ function Messages(props) {
             </>
           );
         })}
-    </div>
+    </>
   );
 }
 export default Messages;
