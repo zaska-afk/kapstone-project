@@ -23,6 +23,19 @@ const fetchMovieDetails = async (movie_id) => {
   return data;
 };
 
+export const updateUser = (username, password, Email, token) => (
+  fetch(`${baseURL}users/${username}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      ...{ displayName, Email },
+      ...(password ? { password } : {})
+    }),
+  }).then((res) => res.json())
+);
+
 // define the store's initial state
 const useStore = create(
   devtools((set) => ({
@@ -58,6 +71,7 @@ const useStore = create(
         }),
       }).then((res) => res.json()),
     user: {},
+
 
     //messages/comments
 

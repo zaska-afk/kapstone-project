@@ -22,6 +22,7 @@ import SciFiChatView from "./views/SciFiChatView";
 import ThrillerChatView from "./views/ThrillerChatView";
 import UpcomingChatView from "./views/UpcomingChatView";
 import MovieDetailsView from "./views/MovieDetailsView";
+import Profile from "./components/Profile";
 //import useStore from "./store";
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
         <Route exact path="/" component={SignInView} />
         <Route path="/home" component={HomeView} />
         <Route path="/profile/:username" component={ProfileView} />
+        <Route path="/components/Profile" component={Profile}/>
         <Route path="/buddies" component={MovieBuddiesView} />
         <Route exact path="/movies" component={MovieSearchView} />
         <Route path="/movies/:movieId" component={MovieDetailsView} />
