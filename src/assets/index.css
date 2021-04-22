@@ -60,10 +60,6 @@ code {
   display: flex;
   padding: 20px;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> b3e05c2d79c3a4460d5e8912fd48fb0f9eb43d31
 .login-card {
   display: flex;
   max-width: 400px;
@@ -198,10 +194,6 @@ code {
   display: flex;
   padding: 15px;
   outline: 4px solid black;
-<<<<<<< HEAD
-=======
-  /* background-color: white; */
->>>>>>> b3e05c2d79c3a4460d5e8912fd48fb0f9eb43d31
   align-items: center;
   text-align: center;
   max-width: 350px;
@@ -212,7 +204,6 @@ code {
     rgba(253, 29, 29, 1) 50%,
     rgba(252, 176, 69, 1) 100%
   );
-<<<<<<< HEAD
 }
 
 .preference-card {
@@ -397,8 +388,6 @@ code {
   text-align: center;
   max-width: 250px;
   max-height: 175px;
-=======
->>>>>>> b3e05c2d79c3a4460d5e8912fd48fb0f9eb43d31
 }
 
 .friends-deck {
@@ -419,20 +408,16 @@ code {
 
 .friends-list-card {
   display: flex;
-<<<<<<< HEAD
-=======
   background-color: gray;
-} */
+}
 
 .preference-card {
   display: flex;
->>>>>>> b3e05c2d79c3a4460d5e8912fd48fb0f9eb43d31
   padding: 15px;
   outline: 4px solid black;
   background-color: white;
   align-items: center;
   text-align: center;
-<<<<<<< HEAD
   max-width: 350px;
   max-height: 300px;
 }
@@ -468,18 +453,4 @@ code {
   background-color: white;
   height: 650px;
   overflow: auto;
-=======
-  max-width: 600px;
-  height: 100%;
-}
-
-.chat-view-cards {
-  display: flex;
-  padding: 15px;
-  outline: 4px solid black;
-  align-items: center;
-  text-align: center;
-  width: 400px;
-  margin: 40px;
->>>>>>> b3e05c2d79c3a4460d5e8912fd48fb0f9eb43d31
 }

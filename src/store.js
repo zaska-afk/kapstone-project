@@ -65,8 +65,8 @@ const useStore = create(
     getUserRequest: (username) => {
       return fetch(baseURL + "users/" + username).then((res) => res.json());
     },
-    msgRequest: () => {
-      return fetch(baseURL + "messages", {})
+    msgRequest: (location) => {
+      return fetch(baseURL + location, {})
         .then((res) => res.json())
         .then((data) => {
           set({ messages: data.messages });
@@ -109,8 +109,8 @@ const useStore = create(
     singleMessage: () => {
       return fetch(baseURL + "messages/1", {}).then((res) => res.json());
     },
-    newMessageRequest: (token, text) => {
-      return fetch(baseURL + "messages", {
+    newMessageRequest: (username, location, token, text) => {
+      return fetch(baseURL + location, {
         method: "POST",
         headers: {
           Authorization: "Bearer " + token,
@@ -119,8 +119,15 @@ const useStore = create(
 
         body: JSON.stringify({
           text,
+          username,
         }),
-      }).then((res) => res.json());
+      })
+        .then((res) => res.json())
+        .then((message) =>
+          set((state) => {
+            messages: state.messages.push(message);
+          })
+        );
     },
     // deleteMessage: (token, username) =>
     //   fetch(baseURL + "users/" + username, {
