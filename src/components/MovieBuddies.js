@@ -34,7 +34,7 @@ function MovieBuddies(props) {
           <Card.Body>
             <Card.Text>
               Email: {props.user.email}
-              Liked Movies: {user.likedMovies}
+              Liked Movies: {props.user.likedMovies}
             </Card.Text>
             <Button
               onClick={() => history.push(`/profile/${props.user._id}`)}
