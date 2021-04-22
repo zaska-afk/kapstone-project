@@ -38,12 +38,10 @@ function MovieBuddiesView() {
           <Card className="buddies-deck">
             <h3>All Buddies Available</h3>
             <div className="area2">
-              {/* <CardGroup> */}
               {allUsers &&
                 allUsers.map((user) => {
                   return <MovieBuddies user={user} key={user._id} />;
                 })}
-              {/* </CardGroup> */}{" "}
             </div>
           </Card>
 

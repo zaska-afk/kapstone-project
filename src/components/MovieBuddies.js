@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Button, CardDeck, Popover } from "react-bootstrap";
+import { Card, Button } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 
 import Minion from "../assets/Minion.jpg";
@@ -16,7 +16,6 @@ function MovieBuddies(props) {
 
   return (
     <>
-
       <Card className="buddies-card">
         <Card.Header className="buddies-header">
           <Card.Img
@@ -42,7 +41,6 @@ function MovieBuddies(props) {
           </Button>
         </Card.Body>
       </Card>
-
     </>
   );
 }

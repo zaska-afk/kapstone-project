@@ -31,8 +31,9 @@ function App() {
       <Switch>
         <Route exact path="/" component={SignInView} />
         <Route path="/home" component={HomeView} />
-        <Route path="/profile/:username" component={ProfileView} />
-        <Route path="/profile" component={Profile}/>
+
+        <Route path="/profile/:_id" component={ProfileView} />
+
         <Route path="/buddies" component={MovieBuddiesView} />
         <Route exact path="/movies" component={MovieSearchView} />
         <Route path="/movies/:movieId" component={MovieDetailsView} />
