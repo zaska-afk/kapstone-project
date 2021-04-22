@@ -16,6 +16,7 @@ function MovieBuddies(props) {
 
   return (
     <>
+
       <Card className="buddies-card">
         <Card.Header className="buddies-header">
           <Card.Img
@@ -41,6 +42,7 @@ function MovieBuddies(props) {
           </Button>
         </Card.Body>
       </Card>
+
     </>
   );
 }

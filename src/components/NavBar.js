@@ -3,6 +3,10 @@ import { LinkContainer } from "react-router-bootstrap";
 import { Nav, Navbar, Container } from "react-bootstrap";
 
 function NavBar() {
+  const logout = () => {
+    window.localStorage.clear();
+    window.location.href = "/";
+  };
   return (
     <Container>
       <Navbar variant="light" expand="lg" fixed="top" className="navbar">
@@ -34,7 +38,9 @@ function NavBar() {
             </LinkContainer>
             <LinkContainer to="/">
               <Nav.Link>
-                <b>Logout</b>
+
+                <div onClick={logout}>Logout</div>
+
               </Nav.Link>
             </LinkContainer>
           </Nav>
