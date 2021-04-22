@@ -1,14 +1,11 @@
 import React, { useEffect } from "react";
-import { Image, Card, Button, CardDeck } from "react-bootstrap";
+import { Image, Card, CardGroup } from "react-bootstrap";
 
 import NavBar from "../components/NavBar";
 import CoupleWatching from "../assets/CoupleWatching.jpg";
 import useStore from "../store";
 import MovieBuddies from "../components/MovieBuddies";
-import Minion from "../assets/Minion.jpg";
 import MovieBuddiesFriendsList from "../components/MovieBuddiesFriendsList";
-
-//import MovieBuddiesFriendsList from "../components/MovieBuddiesFriendsList";
 
 function MovieBuddiesView() {
   const fetchAllUsers = useStore((state) => state.fetchAllUsers);
@@ -29,37 +26,35 @@ function MovieBuddiesView() {
     <>
       <NavBar />
       <div>
-        <Image
-          src={CoupleWatching}
-          style={{
-            position: "absolute",
-            width: "100%",
-            left: "50%",
-            top: "70%",
-            height: "100%",
-            objectFit: "cover",
-            transform: "translate(-50%, -50%)",
-            zIndex: "-1",
-          }}
-        />
+        <Image src={CoupleWatching} className="chat-videos" />
         <h1 className="home-header">Movie Buddies</h1>
         <div
           style={{
             display: "flex",
             flexWrap: "wrap",
-            justifyContent: "space-around",
+            justifyContent: "space-between",
           }}
         >
-          {allUsers &&
-            allUsers.map((user) => {
-              return <MovieBuddies user={user} key={user._id} />;
-            })}
+          <Card className="buddies-deck">
+            <h3>All Buddies Available</h3>
+            <div className="area2">
+              {/* <CardGroup> */}
+              {allUsers &&
+                allUsers.map((user) => {
+                  return <MovieBuddies user={user} key={user._id} />;
+                })}
+              {/* </CardGroup> */}{" "}
+            </div>
+          </Card>
 
-          <Card>
-            {movieBuddies &&
-              movieBuddies.map((user) => {
-                return <MovieBuddiesFriendsList user={user.user} />;
-              })}
+          <Card className="friends-deck">
+            <h3>My Buddies List</h3>
+            <div className="area2">
+              {movieBuddies &&
+                movieBuddies.map((user) => {
+                  return <MovieBuddiesFriendsList user={user.user} />;
+                })}
+            </div>
           </Card>
         </div>
       </div>
