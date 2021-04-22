@@ -1,8 +1,10 @@
 import React from "react";
 import { LinkContainer } from "react-router-bootstrap";
 import { Nav, Navbar, Container } from "react-bootstrap";
+import useStore from "../store";
 
-function NavBar() {
+function NavBar(props) {
+  const user = useStore((state) => state.user.user);
   const logout = () => {
     window.localStorage.clear();
     window.location.href = "/";
@@ -26,7 +28,7 @@ function NavBar() {
                 <b>Survey</b>
               </Nav.Link>
             </LinkContainer>
-            <LinkContainer to="/profile">
+            <LinkContainer to={`/profile/${user._id}`}>
               <Nav.Link>
                 <b>Profile</b>
               </Nav.Link>
@@ -38,9 +40,7 @@ function NavBar() {
             </LinkContainer>
             <LinkContainer to="/">
               <Nav.Link>
-
                 <div onClick={logout}>Logout</div>
-
               </Nav.Link>
             </LinkContainer>
           </Nav>

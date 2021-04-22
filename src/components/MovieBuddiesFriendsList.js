@@ -23,7 +23,12 @@ function MovieBuddiesFriendsList(props) {
         <Card.Body>
           <Card.Text>
             <b>Email:</b> {props.user.email} <br />
-            <b>Liked Movies:</b> {props.user.likedMovies}
+            <b>Liked Movies:</b>
+            <div>
+              {props.user.likedMovies.map((movie) => {
+                return <div>{movie.movie.title}, </div>;
+              })}
+            </div>
           </Card.Text>
         </Card.Body>
       </Card>

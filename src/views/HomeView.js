@@ -9,8 +9,11 @@ import MovieReview from "../assets/MovieReview.png";
 import AtTheMovies from "../assets/AtTheMovies.jpg";
 import UpcomingMovies from "../assets/UpcomingMovies.png";
 import FilmReel from "../assets/FilmReel.png";
+import useStore from "../store";
 
 function HomeView() {
+  const user = useStore((state) => state.user.user);
+
   return (
     <>
       <NavBar />
@@ -55,7 +58,7 @@ function HomeView() {
           </Card>
           <Card className="home-card">
             <Card.Header className="center">
-              <LinkContainer to="/profile">
+              <LinkContainer to={`/profile/${user._id}`}>
                 <h3>
                   <b>Profile Page</b>
                 </h3>
