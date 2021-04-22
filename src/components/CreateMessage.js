@@ -20,11 +20,11 @@ function NewMessage(props) {
       <Form id="login-form" onSubmit={handleMessage}>
         <Form.Group controlId="exampleForm.ControlTextarea1">
           <Form.Label className="button" htmlFor="displayName">
-            Username: {user.username}
+            <b>Username:</b> {user.username}
           </Form.Label>
           <br />
           <Form.Label className="button" htmlFor="displayName">
-            Message:
+            <b>Post Message:</b>
           </Form.Label>
           <Form.Control
             as="textarea"
@@ -39,7 +39,7 @@ function NewMessage(props) {
             }}
           />
         </Form.Group>
-        <Button type="submit" size="lg" variant="info">
+        <Button type="submit" size="lg" variant="warning">
           Submit New Message
         </Button>
       </Form>

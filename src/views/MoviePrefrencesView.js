@@ -58,10 +58,10 @@ function MoviePrefrencesView() {
 
       <div>
         <h1 className="movie-header">Movie Preferences</h1>
-        <h3 className="text">
+        <h3 className="preference-text">
           Press Left Arrow to skip, Right to add to your favorite movie list.
         </h3>
-        <h2 className="title">Do you like this movie?</h2>
+        <h2 className="preferences-title">Do you like this movie?</h2>
         <div>
           {isLoading === true ? (
             <Spinner animation="border" role="status">
@@ -69,13 +69,9 @@ function MoviePrefrencesView() {
             </Spinner>
           ) : (
             <div>
-              <h2 className="text">{currentMovie.title}</h2>
+              <h2 className="preference-text">{currentMovie.title}</h2>
               <br />
-              <div
-                id="topcontainer"
-                style={{ align: "center" }}
-                class="current-movie"
-              >
+              <div>
                 <Card className="current-movie">
                   <Card.Img
                     style={{ align: "center" }}
@@ -91,11 +87,9 @@ function MoviePrefrencesView() {
           )}
         </div>
 
-        <br></br>
-
-        <h2 className="title">Below are the movies you like!</h2>
+        <h2 className="preferences-title2">Below are the movies you like!</h2>
+        <hr />
         <div className="added-movie">
-
           {movies.map((myMovie) => {
             return (
               <>

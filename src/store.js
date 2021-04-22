@@ -41,6 +41,7 @@ const useStore = create(
           set({ user: user });
           return user;
         }),
+
     logoutRequest: (token) =>
       fetch(`${baseURL}auth/logout`, {
         headers: { Authorization: `Bearer ${token}` },
@@ -141,7 +142,7 @@ const useStore = create(
     popularMovies: [],
 
     fetchActionMovies: async () => {
-      const movieIds = [390054, 385687, 522931, 664767, 9257];
+      const movieIds = [385687, 522931, 664767, 9257];
       const moviesFetch = movieIds.map((id) => fetchMovieDetails(id));
       const results = await Promise.all(moviesFetch);
       set({ actionMovies: results });
@@ -149,7 +150,7 @@ const useStore = create(
     actionMovies: [],
 
     fetchAnimationMovies: async () => {
-      const movieIds = [12, 127380, 9502, 136799, 52774];
+      const movieIds = [12, 9502, 136799, 527774];
       const moviesFetch = movieIds.map((id) => fetchMovieDetails(id));
       const results = await Promise.all(moviesFetch);
       set({ animationMovies: results });
@@ -157,7 +158,7 @@ const useStore = create(
     animationMovies: [],
 
     fetchComedyMovies: async () => {
-      const movieIds = [49524, 483980, 497796, 484718, 615678];
+      const movieIds = [49524, 483980, 484718, 615678];
       const moviesFetch = movieIds.map((id) => fetchMovieDetails(id));
       const results = await Promise.all(moviesFetch);
       set({ comedyMovies: results });
@@ -165,7 +166,7 @@ const useStore = create(
     comedyMovies: [],
 
     fetchDocumentaryMovies: async () => {
-      const movieIds = [638164, 250653, 497796, 484718, 684700];
+      const movieIds = [638164, 475345, 737157, 684700];
       const moviesFetch = movieIds.map((id) => fetchMovieDetails(id));
       const results = await Promise.all(moviesFetch);
       set({ documentaryMovies: results });
@@ -173,7 +174,7 @@ const useStore = create(
     documentaryMovies: [],
 
     fetchHorrorMovies: async () => {
-      const movieIds = [14977, 449454, 346364, 405882, 36671];
+      const movieIds = [14977, 449454, 405882, 36671];
       const moviesFetch = movieIds.map((id) => fetchMovieDetails(id));
       const results = await Promise.all(moviesFetch);
       set({ horrorMovies: results });
@@ -181,15 +182,15 @@ const useStore = create(
     horrorMovies: [],
 
     fetchSciFiMovies: async () => {
-      const movieIds = [31127, 694938, 333339, 791373, 329865];
+      const movieIds = [694938, 333339, 791373, 329865];
       const moviesFetch = movieIds.map((id) => fetchMovieDetails(id));
       const results = await Promise.all(moviesFetch);
       set({ sciFiMovies: results });
     },
     sciFiMovies: [],
 
-    fetchThirllerMovies: async () => {
-      const movieIds = [43253, 19380, 23202, 522681, 625568];
+    fetchThrillerMovies: async () => {
+      const movieIds = [19380, 23202, 522681, 625568];
       const moviesFetch = movieIds.map((id) => fetchMovieDetails(id));
       const results = await Promise.all(moviesFetch);
       set({ thrillerMovies: results });
@@ -197,7 +198,7 @@ const useStore = create(
     thrillerMovies: [],
 
     fetchKidsMovies: async () => {
-      const movieIds = [118979, 448119, 777350, 420817, 644092];
+      const movieIds = [448119, 777350, 420817, 644092];
       const moviesFetch = movieIds.map((id) => fetchMovieDetails(id));
       const results = await Promise.all(moviesFetch);
       set({ kidsMovies: results });
@@ -205,7 +206,7 @@ const useStore = create(
     kidsMovies: [],
 
     fetchNewMovies: async () => {
-      const movieIds = [390054, 385687, 522931, 664767, 9257];
+      const movieIds = [385687, 522931, 664767, 9257];
       const moviesFetch = movieIds.map((id) => fetchMovieDetails(id));
       const results = await Promise.all(moviesFetch);
       set({ newMovies: results });
