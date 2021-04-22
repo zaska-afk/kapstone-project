@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import  useStore  from '../store';
-import { InputGroup, Button, Form}  from 'react-bootstrap';
+import {  Button, Form}  from 'react-bootstrap';
 
-function Profile() {
+function editProfile() {
     const user = useStore((state) => state.user);
     const [formData, setFormData] = useState({
       username: '',
@@ -91,4 +91,4 @@ const updateUser = useStore((state) => state.updateUser)
     }
 // change
     
-    export default Profile;
+    export default editProfile;

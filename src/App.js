@@ -32,7 +32,7 @@ function App() {
         <Route exact path="/" component={SignInView} />
         <Route path="/home" component={HomeView} />
         <Route path="/profile/:username" component={ProfileView} />
-        <Route path="/profile" component={Profile}/>
+        <Route path="/profile" component={editProfile}/>
         <Route path="/buddies" component={MovieBuddiesView} />
         <Route exact path="/movies" component={MovieSearchView} />
         <Route path="/movies/:movieId" component={MovieDetailsView} />
