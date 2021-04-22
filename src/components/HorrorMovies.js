@@ -3,9 +3,9 @@ import { Image } from "react-bootstrap";
 
 import useStore from "../store";
 
-function ActionMovies() {
-  const fetchMovies = useStore((state) => state.fetchActionMovies);
-  const movies = useStore((state) => state.actionMovies);
+function HorrorMovies() {
+  const fetchMovies = useStore((state) => state.fetchHorrorMovies);
+  const movies = useStore((state) => state.horrorMovies);
   useEffect(() => {
     fetchMovies();
   }, [fetchMovies]);
@@ -42,4 +42,4 @@ function Movie({ movie }) {
   );
 }
 
-export default ActionMovies;
+export default HorrorMovies;

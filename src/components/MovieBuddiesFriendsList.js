@@ -1,45 +1,34 @@
 import React from "react";
-import { Card, Button, CardDeck } from "react-bootstrap";
-import { useHistory } from "react-router-dom";
+import { Card } from "react-bootstrap";
 
 import Minion from "../assets/Minion.jpg";
 
-function MovieBuddies({ user }) {
-  const history = useHistory();
-
+function MovieBuddiesFriendsList(props) {
   return (
     <>
-      <CardDeck className="card-member">
-        <Card>
-          <Card.Header className="buddies-header">
-            <Card.Img
-              style={{
-                width: "60px",
-                display: "inline-block",
-              }}
-              src={Minion}
-              roundedCircle
-            />
-            <Card.Title className="buddies-header2">
-              Username: {user.username}
-            </Card.Title>
-          </Card.Header>
-          <Card.Body>
-            <Card.Text>
-              {user.email}
-              {user.likedMovies}
-            </Card.Text>
-            <Button
-              onClick={() => history.splice(`/buddies/${user.movieBuddies}`, 1)}
-              variant="dark"
-            >
-              Delete Buddie
-            </Button>
-          </Card.Body>
-        </Card>
-      </CardDeck>
+      <Card className="friends-list-card">
+        <Card.Header className="buddies-header">
+          <Card.Img
+            style={{
+              width: "60px",
+              display: "inline-block",
+            }}
+            src={Minion}
+            roundedCircle
+          />
+          <Card.Title className="buddies-header2">
+            {props.user.username}
+          </Card.Title>
+        </Card.Header>
+        <Card.Body>
+          <Card.Text>
+            <b>Email:</b> {props.user.email} <br />
+            <b>Liked Movies:</b> {props.user.likedMovies}
+          </Card.Text>
+        </Card.Body>
+      </Card>
     </>
   );
 }
 
-export default MovieBuddies;
+export default MovieBuddiesFriendsList;

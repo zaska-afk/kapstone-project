@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
 import { Button, Card } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
+
 import useStore from "../store";
 
 const commentsDb = [
@@ -96,27 +98,48 @@ const usersDb = [
   },
 ];
 
-function Messages() {
-  // const msgRequest = useStore((state) => state.msgRequest);
-  // const user = useStore((state) => state.user);
-  // useEffect(() => {
-  //   msgRequest();
-  // }, [msgRequest]);
+function Messages(props) {
+  const user = useStore((state) => state.user);
 
+  const deleteChat = useStore((state) => state.deleteChat);
+  const getUserRequest = useStore((state) => state.getUserRequest);
+  const msgRequest = useStore((state) => state.msgRequest);
+  const messages = useStore((state) => state.messages);
+  console.log(messages);
+  const history = useHistory();
+  useEffect(
+    (e) => {
+      console.log(history.location);
+      const location = history.location.pathname;
+      msgRequest(location);
+    },
+    [msgRequest, messages]
+  );
+
+  // const handleDelete = async (e) => {
+  //   e.preventDefault()
+  //   await deleteChat(props.id, user.token)
+  //     .then(() => {
+  //       props.message([]);
+  //     })
+  // }
   return (
     <>
-      {commentsDb.map((message) => {
-        return (
-          <>
-            <Card style={{ width: "18rem" }}>
-              <Card.Body>
-                <Card.Title>{message.username}</Card.Title>
-                <Card.Text>{message.text}</Card.Text>
-              </Card.Body>
-            </Card>
-          </>
-        );
-      })}
+      {messages &&
+        messages.map((message) => {
+          return (
+            <>
+              <Card style={{ width: "18rem" }}>
+                <Card.Body>
+                  <Card.Title>{message.Comments.username}</Card.Title>
+                  <Card.Text>{message.Comments.text}</Card.Text>
+
+                  {/* <Button onClick={handleDelete} size="lg" variant="info">Delete Message</Button> */}
+                </Card.Body>
+              </Card>
+            </>
+          );
+        })}
     </>
   );
 }

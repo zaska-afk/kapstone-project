@@ -1,49 +1,48 @@
 import React from "react";
-import { Card, Button, CardDeck, Image } from "react-bootstrap";
+import { Card, Button, CardDeck, Popover } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 
 import Minion from "../assets/Minion.jpg";
+import useStore from "../store";
 
-function MovieBuddies({ user }) {
+function MovieBuddies(props) {
+  const postMovieBuddies = useStore((state) => state.postMovieBuddies);
+  const user = useStore((state) => state.user.user);
   const history = useHistory();
+
+  function addMovieBuddie() {
+    postMovieBuddies(user._id, props.user);
+  }
 
   return (
     <>
-      <CardDeck className="card-member">
-        <Card>
-          <Card.Header className="buddies-header">
-            <Card.Img
-              style={{
-                width: "60px",
-                display: "inline-block",
-              }}
-              src={Minion}
-              roundedCircle
-            />
-            <Card.Title className="buddies-header2">
-              Username: {user.username}
-            </Card.Title>
-          </Card.Header>
-          <Card.Body>
-            <Card.Text>
-              {user.email}
-              {user.likedMovies}
-            </Card.Text>
-            <Button
-              onClick={() => history.push(`/profile/${user.username}`)}
-              variant="warning"
-            >
-              See Buddie Profile
-            </Button>
-            <Button
-              onClick={() => history.push(`/buddies/${user.movieBuddies}`)}
-              variant="dark"
-            >
-              Add Buddie
-            </Button>
-          </Card.Body>
-        </Card>
-      </CardDeck>
+
+      <Card className="buddies-card">
+        <Card.Header className="buddies-header">
+          <Card.Img
+            style={{
+              width: "30px",
+              display: "inline-block",
+            }}
+            src={Minion}
+            roundedCircle
+          />
+          Username: {props.user.username}
+        </Card.Header>
+        <Card.Body>
+          <Button
+            size="sm"
+            onClick={() => history.push(`/profile/${props.user._id}`)}
+            variant="warning"
+          >
+            See Buddie Profile
+          </Button>
+          <Button size="sm" onClick={addMovieBuddie} variant="dark">
+            Add Buddie
+          </Button>
+        </Card.Body>
+      </Card>
+
     </>
   );
 }

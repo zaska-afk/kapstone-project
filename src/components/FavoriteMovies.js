@@ -6,6 +6,8 @@ import useStore from "../store";
 function FavoriteMovies() {
   const fetchPopular = useStore((state) => state.fetchPopularMovies);
   const movies = useStore((state) => state.popularMovies);
+  const setLikedMovies = useStore((state) => state.setLikedMovies);
+  const user = useStore((state) => state.user.user);
   //const [show, setShow] = useState(false);
   //const [favMovies, setFavMovies] = useState([]);
   //const [target, setTarget] = useState(null);
@@ -28,7 +30,11 @@ function FavoriteMovies() {
             <Popover id="popover-basic">
               <Popover.Title as="h3">{movie.title}</Popover.Title>
               <Popover.Content>
-                <Button size="md" block>
+                <Button
+                  size="md"
+                  block
+                  onClick={() => setLikedMovies(movie, user._id)}
+                >
                   Select
                 </Button>
               </Popover.Content>

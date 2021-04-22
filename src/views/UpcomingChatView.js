@@ -1,44 +1,36 @@
 import React from "react";
-import { Card, CardDeck, Col } from "react-bootstrap";
+import { Card, Row, Col } from "react-bootstrap";
 
 import NavBar from "../components/NavBar";
 import CityScape from "../assets/CityScape.mp4";
 import CreateMessage from "../components/CreateMessage";
 import Messages from "../components/Messages";
+import NewMoviesChat from "../components/NewMoviesChat";
 
 function UpcomingChatView() {
   return (
     <>
       <NavBar />
       <div>
-        <video
-          autoPlay
-          loop
-          muted
-          style={{
-            position: "absolute",
-            width: "100%",
-            left: "50%",
-            top: "70%",
-            height: "100%",
-            objectFit: "cover",
-            transform: "translate(-50%, -50%)",
-            zIndex: "-1",
-          }}
-        >
+        <video autoPlay loop muted className="chat-videos">
           <source src={CityScape} type="video/mp4" />
         </video>
         <h1 className="home-header">Upcoming Movies Chat</h1>
-        <CardDeck>
+        <Row>
           <Col>
             <Card className="chat-view-cards">
-              <Messages />
+              <div className="area">
+                <Messages />
+              </div>
             </Card>
-            <Card className="chat-view-cards">
+            <Card className="newchat-view-cards">
               <CreateMessage />
             </Card>
           </Col>
-        </CardDeck>
+          <Card className="movies-view-cards">
+            <NewMoviesChat />
+          </Card>
+        </Row>
       </div>
     </>
   );
