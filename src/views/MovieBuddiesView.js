@@ -11,8 +11,8 @@ function MovieBuddiesView() {
   const fetchAllUsers = useStore((state) => state.fetchAllUsers);
   const allUsers = useStore((state) => state.allUsers);
   const fetchMovieBuddies = useStore((state) => state.fetchMovieBuddies);
-  const movieBuddies = useStore((state) => state.movieBuddies);
   const user = useStore((state) => state.user.user);
+  const movieBuddies = user.movieBuddies;
 
   useEffect(() => {
     fetchMovieBuddies(user._id);

@@ -95,7 +95,9 @@ const useStore = create(
         body: JSON.stringify({
           user,
         }),
-      }).then((res) => res.json());
+      })
+        .then((res) => res.json())
+        .then((user) => set({ user: user }));
     },
 
     singleMessage: () => {
@@ -259,7 +261,11 @@ const useStore = create(
         body: JSON.stringify({
           movie,
         }),
-      }).then((res) => res.json());
+      })
+        .then((res) => res.json())
+        .then((user) => {
+          set({ user: user });
+        });
     },
   }))
 );
