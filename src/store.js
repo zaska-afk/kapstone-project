@@ -5,6 +5,7 @@ const movieURL = "https://api.themoviedb.org/";
 const baseURL = "http://localhost:3000/";
 // const baseURL = "https://socialapp-api.herokuapp.com/";
 const apiKey = "api_key=6645eb422ef966984e8f1eade6202ea0";
+const initialState = { user: { token: "" }, messages: [] };
 
 const fetchPage = async (pageNumber) => {
   const res = await fetch(
@@ -65,8 +66,13 @@ const useStore = create(
       return fetch(baseURL + "users/" + username).then((res) => res.json());
     },
     msgRequest: () => {
-      return fetch(baseURL + "messages", {}).then((res) => res.json());
+      return fetch(baseURL + "messages", {})
+        .then((res) => res.json())
+        .then((data) => {
+          set({ messages: data.messages });
+        });
     },
+    messages: [],
 
     fetchAllUsers: async () => {
       fetch(baseURL + "users")
@@ -116,11 +122,20 @@ const useStore = create(
         }),
       }).then((res) => res.json());
     },
-    deleteMessage: (token, username) =>
-      fetch(baseURL + "users/" + username, {
-        headers: { Authorization: "Bearer " + token },
+    // deleteMessage: (token, username) =>
+    //   fetch(baseURL + "users/" + username, {
+    //     headers: { Authorization: "Bearer " + token },
+    //     method: "DELETE",
+    //   }),
+    deleteChat: (token, messageId) => {
+      return fetch(baseURL + "messages/" + messageId, {
         method: "DELETE",
-      }),
+        headers: {
+          Authorization: "Bearer " + token,
+          "Content-Type": "application/json",
+        },
+      }).then((res) => res.json());
+    },
 
     // Movie URL
     fetchUpcomingMovies: async () => {
