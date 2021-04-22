@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
 import { Button, Card } from "react-bootstrap";
+
 import useStore from "../store";
 
 const commentsDb = [
@@ -96,30 +97,46 @@ const usersDb = [
   },
 ];
 
-function Messages() {
-  // const msgRequest = useStore((state) => state.msgRequest);
-  // const user = useStore((state) => state.user);
-  // useEffect(() => {
-  //   msgRequest();
-  // }, [msgRequest]);
+function Messages(props) {
+  const user = useStore((state) => state.user);
 
+  const deleteChat = useStore((state) => state.deleteChat);
+  const getUserRequest = useStore((state) => state.getUserRequest);
+  const msgRequest = useStore((state) => state.msgRequest);
+  const messages = useStore((state) => state.messages);
+
+  useEffect(
+    (e) => {
+      msgRequest();
+    },
+    [msgRequest]
+  );
+
+  // const handleDelete = async (e) => {
+  //   e.preventDefault()
+  //   await deleteChat(props.id, user.token)
+  //     .then(() => {
+  //       props.message([]);
+  //     })
+  // }
   return (
-    <>
-      {commentsDb.map((message) => {
-        return (
-          <>
-            <Card className="message-card">
-              <Card.Body>
-                <Card.Title>
-                  <b>{message.username}</b>
-                </Card.Title>
-                <Card.Text>{message.text}</Card.Text>
-              </Card.Body>
-            </Card>
-          </>
-        );
-      })}
-    </>
+    <div>
+      {messages &&
+        messages.map((message) => {
+          return (
+            <>
+              <Card style={{ width: "18rem" }}>
+                <Card.Body>
+                  <Card.Title>{message.username}</Card.Title>
+                  <Card.Text>{message.text}</Card.Text>
+
+                  {/* <Button onClick={handleDelete} size="lg" variant="info">Delete Message</Button> */}
+                </Card.Body>
+              </Card>
+            </>
+          );
+        })}
+    </div>
   );
 }
 export default Messages;
