@@ -7,7 +7,7 @@ import App from "./App";
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter basename="/kapstone-project">
+    <BrowserRouter basename="/kapstone-project/">
       <App />
     </BrowserRouter>
   </React.StrictMode>,
