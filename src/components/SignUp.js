@@ -12,13 +12,10 @@ const SignUp = (props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await setCreateUser(
-      formData.username,
-      formData.displayName,
-      formData.password
-    );
+    await setCreateUser(formData.username, formData.email, formData.password);
     const loginData = await loginRequest(formData.username, formData.password);
-    loginData.token ? history.push("/survey") : history.push("/");
+    console.log(loginData);
+    loginData.user._id ? history.push("/survey") : history.push("/");
   };
 
   const handleChange = (e) => {
@@ -45,11 +42,11 @@ const SignUp = (props) => {
             />
           </Form.Group>
           <Form.Group>
-            <label>Display Name</label>
+            <label>Email</label>
             <input
-              type="text"
-              name="displayName"
-              value={formData.displayName}
+              type="email"
+              name="email"
+              value={formData.email}
               autoFocus
               required
               onChange={handleChange}

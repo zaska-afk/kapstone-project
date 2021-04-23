@@ -1,45 +1,41 @@
 import React from "react";
-import { Image } from "react-bootstrap";
+import { Card, Row, Col } from "react-bootstrap";
 
 import NavBar from "../components/NavBar";
-import FreeWilly from "../assets/FreeWilly.jpg";
+import Thriller from "../assets/Thriller.mp4";
+import CreateMessage from "../components/CreateMessage";
+import Messages from "../components/Messages";
+import ThrillerMovies from "../components/ThrillerMovies";
 
 function ThrillerView() {
   return (
     <>
       <NavBar />
       <div>
-        {/* <video
-          autoPlay
-          loop
-          muted
-          style={{
-            position: "absolute",
-            width: "100%",
-            left: "50%",
-            top: "70%",
-            height: "100%",
-            objectFit: "cover",
-            transform: "translate(-50%, -50%)",
-            zIndex: "-1",
-          }}
-        >
-          <source src={LoginBG} type="video/mp4" />
-        </video> */}
-        <Image
-          src={FreeWilly}
-          style={{
-            position: "absolute",
-            width: "100%",
-            left: "50%",
-            top: "70%",
-            height: "100%",
-            objectFit: "cover",
-            transform: "translate(-50%, -50%)",
-            zIndex: "-1",
-          }}
-        />
+        <video autoPlay loop muted className="chat-videos">
+          <source src={Thriller} type="video/mp4" />
+        </video>
         <h1 className="home-header">Thriller Movies Chat</h1>
+        <Row>
+          <Col>
+            <Card className="chat-view-cards">
+              <div className="area">
+                <Messages />
+              </div>
+            </Card>
+            <Card className="newchat-view-cards">
+              <CreateMessage />
+            </Card>
+          </Col>
+          {/* <Card>
+            <h1>
+              <b>Thriller</b>
+            </h1>
+          </Card> */}
+          <Card className="movies-view-cards">
+            <ThrillerMovies />
+          </Card>
+        </Row>
       </div>
     </>
   );

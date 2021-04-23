@@ -12,9 +12,21 @@ code {
     monospace;
 }
 
+.buddies-header {
+  white-space: nowrap;
+  width: 100%;
+}
+.buddies-header2 {
+  display: inline-block;
+  font-size: 10px;
+  margin: 5px;
+  padding: 5px;
+}
+
 .signin-header {
   margin-top: 20px;
   color: goldenrod;
+
   text-shadow: 4px 4px black;
   font-size: 80px;
   font-weight: bolder;
@@ -29,11 +41,18 @@ code {
   margin-top: 1em;
 }
 
+.preference-text {
+  color: black;
+  font-weight: bolder;
+  font-size: 2em;
+  text-align: center;
+  margin-top: 1em;
+}
+
 .card-deck {
   display: flex;
   margin-top: 20px;
   padding: 1em;
-
   justify-content: center;
 }
 
@@ -41,17 +60,6 @@ code {
   display: flex;
   padding: 20px;
 }
-.card {
-  display: flex;
-  padding: 15px;
-  outline: 4px solid black;
-  background-color: white;
-  align-items: center;
-  text-align: center;
-  max-width: 300px;
-  height: 200px;
-}
-
 .login-card {
   display: flex;
   max-width: 400px;
@@ -63,12 +71,59 @@ code {
   padding-bottom: 40px;
   margin: 5px;
 }
+.home-card {
+  display: flex;
+  padding: 15px;
+  outline: 4px solid black;
+  align-items: center;
+  text-align: center;
+  max-width: 320px;
+  height: 200px;
+  background-image: linear-gradient(
+    90deg,
+    rgba(131, 58, 180, 1) 0%,
+    rgba(253, 29, 29, 1) 50%,
+    rgba(252, 176, 69, 1) 100%
+  );
+}
+/* 
+.home-card {
+  display: flex;
+  padding: 15px;
+  outline: 4px solid black;
+  align-items: center;
+  text-align: center;
+  max-width: 320px;
+  height: 200px;
+  background-image: linear-gradient(
+    90deg,
+    rgba(131, 58, 180, 1) 0%,
+    rgba(253, 29, 29, 1) 50%,
+    rgba(252, 176, 69, 1) 100%
+  );
+} */
 
 .title {
   color: black;
   margin-top: 60px;
   font-weight: bolder;
   font-size: 40px;
+  text-align: center;
+}
+
+.preferences-title {
+  color: rgba(252, 176, 69, 1);
+  margin-top: 40px;
+  font-weight: bolder;
+  font-size: 40px;
+  text-align: center;
+}
+.preferences-title2 {
+  color: black;
+  margin-top: 20px;
+  font-weight: bolder;
+  font-size: 40px;
+  text-align: center;
 }
 
 .home-header {
@@ -112,12 +167,22 @@ code {
   border-left: 6px solid goldenrod;
   height: 200px;
 }
+
 .space {
   white-space: nowrap;
 }
+.navbar {
+  background-image: linear-gradient(
+    90deg,
+    rgba(131, 58, 180, 1) 0%,
+    rgba(253, 29, 29, 1) 50%,
+    rgba(252, 176, 69, 1) 100%
+  );
+}
+
 .movie-header {
   margin-top: 1em;
-  color: goldenrod;
+  color: rgba(252, 176, 69, 1);
   text-shadow: 4px 4px black;
   font-size: 80px;
   font-weight: bolder;
@@ -128,13 +193,306 @@ code {
   display: flex;
   padding: 15px;
   outline: 4px solid black;
-  background-color: white;
   align-items: center;
   text-align: center;
   max-width: 350px;
   height: 200px;
+  background-image: linear-gradient(
+    90deg,
+    rgba(131, 58, 180, 1) 0%,
+    rgba(253, 29, 29, 1) 50%,
+    rgba(252, 176, 69, 1) 100%
+  );
 }
-/* .center {
+
+.preference-card {
+  display: flex;
+  padding: 15px;
+  outline: 4px solid black;
+  background-color: white;
+  align-items: center;
+  text-align: center;
+  max-width: 600px;
+  height: 100%;
+}
+
+.results {
+  width: 300px;
+  height: 300px;
+  overflow-y: scroll;
+  background-color: white;
+  scrollbar-width: thick;
+  outline: 4px solid black;
+}
+
+.formBasicSearch {
+  display: flex;
+  width: max-content;
+  position: absolute;
+  background-color: white;
+}
+
+.chat-view-cards {
+  padding: 15px;
+  outline: 8px solid black;
+  align-items: center;
+  text-align: center;
+  width: 350px;
+  height: 450px;
+  margin-bottom: 30px;
+  margin-top: 40px;
+  margin-left: 30px;
+  background-image: linear-gradient(
+    90deg,
+    rgba(131, 58, 180, 1) 0%,
+    rgba(253, 29, 29, 1) 50%,
+    rgba(252, 176, 69, 1) 100%
+  );
+}
+
+.newchat-view-cards {
+  display: flex;
+  padding: 15px;
+  outline: 8px solid black;
+  align-items: center;
+  text-align: center;
+  max-width: 350px;
+  max-height: 275px;
+  margin-left: 30px;
+  background-image: linear-gradient(
+    90deg,
+    rgba(131, 58, 180, 1) 0%,
+    rgba(253, 29, 29, 1) 50%,
+    rgba(252, 176, 69, 1) 100%
+  );
+}
+
+.movies-view-cards {
+  display: flex;
+  padding: 10px;
+  background-image: linear-gradient(
+    90deg,
+    rgba(131, 58, 180, 1) 0%,
+    rgba(253, 29, 29, 1) 50%,
+    rgba(252, 176, 69, 1) 100%
+  );
+  outline: 8px solid black;
+  text-align: center;
+  width: 200px;
+  margin-top: 40px;
+  margin-right: 80px;
+}
+
+.preferences {
+  display: flex;
+  align-content: center;
+}
+
+.current-movie {
+  display: flex;
+  max-width: 600px;
+  height: 100%;
+  object-fit: cover;
+  padding: 20px;
+  margin: auto;
+  background-image: linear-gradient(
+    90deg,
+    rgba(131, 58, 180, 1) 0%,
+    rgba(253, 29, 29, 1) 50%,
+    rgba(252, 176, 69, 1) 100%
+  );
+}
+.added-movie {
+  display: block;
+  margin-left: 6rem;
+  background-color: white;
+  align-items: center;
+}
+
+.form-buffer {
+  margin: 0px;
+}
+
+.details-card {
+  display: flex;
+  max-width: 600px;
+  max-height: 600px;
+  align-items: center;
+  outline: 8px solid black;
+  text-align: center;
+  background-color: white;
+  padding-bottom: 40px;
+  margin: 5px;
+}
+
+.img-card {
+  display: flex;
+  max-width: 400px;
+  max-height: 600px;
+  align-items: center;
+  outline: 8px solid black;
+  text-align: center;
+  background-color: white;
+  padding-bottom: 40px;
+  margin: 5px;
+}
+
+.search-text {
+  color: black;
+  font-weight: bolder;
+  text-shadow: 2px 2px goldenrod;
+  font-size: 2em;
+  text-align: center;
+}
+
+.search-card {
+  display: flex;
+  max-width: 400px;
+  height: 300px;
+  align-items: center;
+  outline: 8px solid black;
+  text-align: center;
+  padding-bottom: 40px;
+  margin: 5px;
+  background-image: linear-gradient(
+    90deg,
+    rgba(131, 58, 180, 1) 0%,
+    rgba(253, 29, 29, 1) 50%,
+    rgba(252, 176, 69, 1) 100%
+  );
+}
+.profile-card {
+  display: flex;
+  max-width: 650px;
+  height: 675px;
+  align-items: center;
+  outline: 8px solid black;
+  text-align: center;
+  padding-bottom: 40px;
+  margin: 5px;
+  background-image: linear-gradient(
+    90deg,
+    rgba(131, 58, 180, 1) 0%,
+    rgba(253, 29, 29, 1) 50%,
+    rgba(252, 176, 69, 1) 100%
+  );
+}
+.profile-card2 {
+  display: flex;
+  max-width: 450px;
+  height: 375px;
+  align-items: center;
+  outline: 8px solid black;
+  text-align: center;
+  padding-bottom: 40px;
+  margin: 5px;
+  background-image: linear-gradient(
+    90deg,
+    rgba(131, 58, 180, 1) 0%,
+    rgba(253, 29, 29, 1) 50%,
+    rgba(252, 176, 69, 1) 100%
+  );
+}
+
+.buddies-deck {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 400px;
+  padding: 20px;
+  outline: 8px solid black;
+  text-align: center;
+  margin-left: 20px;
+  margin-top: 40px;
+  background-image: linear-gradient(
+    90deg,
+    rgba(131, 58, 180, 1) 0%,
+    rgba(253, 29, 29, 1) 50%,
+    rgba(252, 176, 69, 1) 100%
+  );
+}
+
+.buddies-card {
+  display: flex;
+  padding: 5px;
+  outline: 4px solid black;
+  background-color: white;
+  text-align: center;
+  max-width: 250px;
+  max-height: 175px;
+}
+
+.friends-deck {
+  display: inline-block;
+  max-width: 350px;
+  padding: 20px;
+  outline: 8px solid black;
+  text-align: center;
+  margin-right: 20px;
+  margin-top: 40px;
+  background-image: linear-gradient(
+    90deg,
+    rgba(131, 58, 180, 1) 0%,
+    rgba(253, 29, 29, 1) 50%,
+    rgba(252, 176, 69, 1) 100%
+  );
+}
+
+.friends-list-card {
   display: flex;
   background-color: gray;
-} */
+}
+
+.preference-card {
+  display: flex;
+  padding: 15px;
+  outline: 4px solid black;
+  background-color: white;
+  align-items: center;
+  text-align: center;
+  max-width: 350px;
+  max-height: 300px;
+}
+
+.message-card {
+  display: flex;
+  outline: 4px solid black;
+  background-color: white;
+  text-align: center;
+  width: 250px;
+  max-height: 200px;
+}
+
+.chat-videos {
+  position: absolute;
+  width: 100%;
+  left: 50%;
+  top: 70%;
+  height: 100%;
+  object-fit: cover;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+}
+
+.area {
+  background-color: white;
+  height: 450px;
+  overflow: auto;
+}
+
+.area2 {
+  background-color: white;
+  height: 600px;
+  overflow: auto;
+}
+.area3 {
+  background-color: white;
+  height: 300px;
+  overflow: auto;
+}
+
+.profile-text {
+  color: black;
+  font-weight: bolder;
+  font-size: 20px;
+  text-align: center;
+}

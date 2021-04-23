@@ -7,7 +7,19 @@ function UpcomingMovieView() {
   return (
     <>
       <NavBar />
-      <NewMovies />
+      <h1 className="home-header">Upcoming Movies</h1>
+      <h2 className="text">To see a synopsis, hover over a movie below</h2>
+      <br />
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "space-around",
+          margin: "20px",
+        }}
+      >
+        <NewMovies />
+      </div>
     </>
   );
 }

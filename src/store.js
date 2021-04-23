@@ -1,8 +1,26 @@
 import create from "zustand";
 import { devtools } from "zustand/middleware";
 
-const movieURL = "https://imdb8.p.rapidapi.com/";
-const baseURL = "https://socialapp-api.herokuapp.com/";
+const movieURL = "https://api.themoviedb.org/";
+const baseURL = "https://moviebuddies.glitch.me/";
+// const baseURL = "https://socialapp-api.herokuapp.com/";
+const apiKey = "api_key=6645eb422ef966984e8f1eade6202ea0";
+
+const fetchPage = async (pageNumber) => {
+  const res = await fetch(
+    movieURL + `3/movie/upcoming?${apiKey}&language=en-US&page=${pageNumber}`
+  );
+  const data = res.json();
+  return data;
+};
+
+const fetchMovieDetails = async (movie_id) => {
+  const res = await fetch(
+    movieURL + `3/movie/${movie_id}?${apiKey}&language=en-US`
+  );
+  const data = res.json();
+  return data;
+};
 
 // define the store's initial state
 const useStore = create(
@@ -10,111 +28,277 @@ const useStore = create(
     //Our DB URL
     // Login/logout APIs
     loginRequest: (username, password) =>
-      fetch(`${baseURL}auth/login`, {
+      fetch(`${baseURL}users/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           username,
           password,
         }),
-      }).then((res) => res.json()),
+      })
+        .then((res) => res.json())
+        .then((user) => {
+          set({ user: user });
+          return user;
+        }),
+
     logoutRequest: (token) =>
       fetch(`${baseURL}auth/logout`, {
         headers: { Authorization: `Bearer ${token}` },
       }).then((res) => res.json()),
-    createUser: (username, displayName, password) =>
+
+    createUser: (username, email, password) =>
       fetch(`${baseURL}users`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           username,
-          displayName,
+          email,
           password,
         }),
       }).then((res) => res.json()),
+    user: {},
 
-    //Movie URL
-    titleFind: (searchTitle) => {
-      return fetch(movieURL + `title/find?q=${searchTitle}`, {
+    //messages/comments
+
+    getUserRequest: (username) => {
+      return fetch(baseURL + "users/" + username).then((res) => res.json());
+    },
+
+    fetchAllUsers: async () => {
+      fetch(baseURL + "users")
+        .then((res) => res.json())
+        .then((users) => {
+          set({ allUsers: users.user });
+        });
+    },
+    allUsers: [],
+
+    fetchMovieBuddies: async (id) => {
+      fetch(baseURL + `users/${id}/moviebuddies`)
+        .then((res) => res.json())
+        .then((users) => {
+          set({ movieBuddies: users.movieBuddies });
+        });
+    },
+    movieBuddies: [],
+
+    postMovieBuddies: async (id, user) => {
+      fetch(baseURL + `users/${id}/moviebuddies`, {
+        method: "POST",
         headers: {
-          "x-rapidapi-key":
-            "194a9c5509mshb0aa3ac6c940779p18e80ajsn2d080182ae5f",
-          useQueryString: true,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          user,
+        }),
+      })
+        .then((res) => res.json())
+        .then((user) => set({ user: user }));
+    },
+
+    // singleMessage: () => {
+    //   return fetch(baseURL + "messages/1", {}).then((res) => res.json());
+    // },
+
+    msgRequest: (location) => {
+      set({ messages: [] });
+      return fetch(baseURL + location, {})
+        .then((res) => res.json())
+        .then((data) => {
+          set({ messages: data.Comments });
+        });
+    },
+    messages: [],
+
+    newMessageRequest: (username, location, text) => {
+      return fetch(baseURL + location, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+
+        body: JSON.stringify({
+          text,
+          username,
+        }),
+      }).then((res) => res.json());
+    },
+
+    deleteChat: (messageId, location) => {
+      return fetch(baseURL + location + "/" + messageId, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
         },
       }).then((res) => res.json());
     },
-    titleBase: (searchId) => {
-      return fetch(movieURL + `title/get-base?tconst=${searchId}`, {
-        headers: {
-          "x-rapidapi-key":
-            "194a9c5509mshb0aa3ac6c940779p18e80ajsn2d080182ae5f",
-          useQueryString: true,
-        },
-      }).then((res) => res.json());
+
+    // Movie URL
+    fetchUpcomingMovies: async () => {
+      const fetchPages = [];
+      for (let i = 1; i <= 5; i++) {
+        fetchPages.push(fetchPage(i));
+      }
+      const pages = await Promise.all(fetchPages);
+      set({ upcomingMovies: pages.flatMap((page) => page.results) });
     },
-    base: {},
-    movieSynopses: (titleId) => {
-      return fetch(
-        movieURL + "title/get-synopses?tconst=" + titleId.split("/")[2],
-        {
-          headers: {
-            "x-rapidapi-key":
-              "194a9c5509mshb0aa3ac6c940779p18e80ajsn2d080182ae5f",
-            useQueryString: true,
-          },
-        }
-      ).then((res) => res.json());
+    upcomingMovies: [],
+
+    fetchPopularMovies: async () => {
+      const fetchPages = [];
+      for (let i = 1; i <= 5; i++) {
+        fetchPages.push(fetchPage(i));
+      }
+      const pages = await Promise.all(fetchPages);
+      set({ popularMovies: pages.flatMap((page) => page.results) });
     },
-    popularGenres: () => {
-      return fetch(movieURL + "title/list-popular-genres", {
-        headers: {
-          "x-rapidapi-key":
-            "194a9c5509mshb0aa3ac6c940779p18e80ajsn2d080182ae5f",
-          useQueryString: true,
-        },
-      }).then((res) => res.json());
+    popularMovies: [],
+
+    fetchActionMovies: async () => {
+      const movieIds = [385687, 522931, 664767, 9257];
+      const moviesFetch = movieIds.map((id) => fetchMovieDetails(id));
+      const results = await Promise.all(moviesFetch);
+      set({ actionMovies: results });
     },
-    movieRatings: (titleId) => {
-      return fetch(
-        movieURL + "title/get-ratings?tconst=" + titleId.split("/")[2],
-        {
-          headers: {
-            "x-rapidapi-key":
-              "194a9c5509mshb0aa3ac6c940779p18e80ajsn2d080182ae5f",
-            useQueryString: true,
-          },
-        }
-      ).then((res) => res.json());
+    actionMovies: [],
+
+    fetchAnimationMovies: async () => {
+      const movieIds = [12, 9502, 136799, 527774];
+      const moviesFetch = movieIds.map((id) => fetchMovieDetails(id));
+      const results = await Promise.all(moviesFetch);
+      set({ animationMovies: results });
     },
-    comingSoon: (titleId) => {
+    animationMovies: [],
+
+    fetchComedyMovies: async () => {
+      const movieIds = [49524, 483980, 484718, 615678];
+      const moviesFetch = movieIds.map((id) => fetchMovieDetails(id));
+      const results = await Promise.all(moviesFetch);
+      set({ comedyMovies: results });
+    },
+    comedyMovies: [],
+
+    fetchDocumentaryMovies: async () => {
+      const movieIds = [638164, 475345, 737157, 684700];
+      const moviesFetch = movieIds.map((id) => fetchMovieDetails(id));
+      const results = await Promise.all(moviesFetch);
+      set({ documentaryMovies: results });
+    },
+    documentaryMovies: [],
+
+    fetchHorrorMovies: async () => {
+      const movieIds = [14977, 449454, 405882, 36671];
+      const moviesFetch = movieIds.map((id) => fetchMovieDetails(id));
+      const results = await Promise.all(moviesFetch);
+      set({ horrorMovies: results });
+    },
+    horrorMovies: [],
+
+    fetchSciFiMovies: async () => {
+      const movieIds = [694938, 333339, 791373, 329865];
+      const moviesFetch = movieIds.map((id) => fetchMovieDetails(id));
+      const results = await Promise.all(moviesFetch);
+      set({ sciFiMovies: results });
+    },
+    sciFiMovies: [],
+
+    fetchThrillerMovies: async () => {
+      const movieIds = [19380, 23202, 522681, 625568];
+      const moviesFetch = movieIds.map((id) => fetchMovieDetails(id));
+      const results = await Promise.all(moviesFetch);
+      set({ thrillerMovies: results });
+    },
+    thrillerMovies: [],
+
+    fetchKidsMovies: async () => {
+      const movieIds = [448119, 777350, 420817, 644092];
+      const moviesFetch = movieIds.map((id) => fetchMovieDetails(id));
+      const results = await Promise.all(moviesFetch);
+      set({ kidsMovies: results });
+    },
+    kidsMovies: [],
+
+    fetchNewMovies: async () => {
+      const movieIds = [385687, 522931, 664767, 9257];
+      const moviesFetch = movieIds.map((id) => fetchMovieDetails(id));
+      const results = await Promise.all(moviesFetch);
+      set({ newMovies: results });
+    },
+    newMovies: [],
+
+    /////////////////////////////////////////////////////////////////////////
+    fetchMovieDetails: (movie_id) => {
+      return fetch(movieURL + `3/movie/${movie_id}?${apiKey}&language=en-US`)
+        .then((res) => res.json())
+        .then((data) => set({ detailsArray: data }));
+    },
+    detailsArray: { results: [] },
+
+    movieSearch: (query) => {
       return fetch(
         movieURL +
-          "title/get-coming-soon-movies?homeCountry=US&purchaseCountry=US&currentCountry=US",
-        {
-          headers: {
-            "x-rapidapi-key":
-              "194a9c5509mshb0aa3ac6c940779p18e80ajsn2d080182ae5f",
-            useQueryString: true,
-          },
-        }
+          `3/search/movie?${apiKey}&language=en-US&query=${query}&page=1&include_adult=false`
+      ).then((res) => res.json());
+      // .then((data) => set({ searchArray: data }));
+    },
+    searchArray: { results: [] },
+
+    movieDetails: (movie_id) => {
+      return fetch(
+        movieURL + `3/movie/${movie_id}?${apiKey}&language=en-US`
+      ).then((res) => res.json());
+      // .then((data) => set({ detailsArray: data }));
+    },
+    detailsArray: { results: [] },
+
+    setPopularMovies: () => {
+      return fetch(
+        "https://api.themoviedb.org/3/movie/popular?api_key=6645eb422ef966984e8f1eade6202ea0&language=en-US&page=1"
       )
         .then((res) => res.json())
-        .then((data) => set({ comingSoonArray: data }));
+        .then((data) => {
+          set({ popularMovies: data });
+          return data;
+        });
     },
-    comingSoonArray: {},
-    movieImages: (titleId) => {
-      return fetch(
-        movieURL + `title/get-images?tconst=${titleId.split("/")[2]}&limit=1`,
-        {
-          headers: {
-            "x-rapidapi-key":
-              "194a9c5509mshb0aa3ac6c940779p18e80ajsn2d080182ae5f",
-            useQueryString: true,
-          },
-        }
-      ).then((res) => res.json());
+    popularMovies: {},
+
+    updateUser: (id, username, email) =>
+      fetch(`${baseURL}users/${id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username,
+          email,
+        }),
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          console.log(res);
+          set({ user: res });
+          return res;
+        }),
+
+    setLikedMovies: (movie, id) => {
+      fetch(baseURL + `users/${id}/likedmovies`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          movie,
+        }),
+      })
+        .then((res) => res.json())
+        .then((user) => {
+          set({ user: user });
+        });
     },
   }))
 );
 
 export default useStore;
+// trying

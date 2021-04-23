@@ -21,6 +21,9 @@ import KidsChatView from "./views/KidsChatView";
 import SciFiChatView from "./views/SciFiChatView";
 import ThrillerChatView from "./views/ThrillerChatView";
 import UpcomingChatView from "./views/UpcomingChatView";
+import MovieDetailsView from "./views/MovieDetailsView";
+import EditProfile from "./components/EditProfile";
+import Profile from "./components/Profile";
 //import useStore from "./store";
 
 function App() {
@@ -29,9 +32,15 @@ function App() {
       <Switch>
         <Route exact path="/" component={SignInView} />
         <Route path="/home" component={HomeView} />
-        <Route path="/profile" component={ProfileView} />
+
+
+        <Route exact path="/profile/:_id" component={ProfileView} />
+        <Route path="/profile/:_id/edit" component={EditProfile} />
+
+
         <Route path="/buddies" component={MovieBuddiesView} />
-        <Route path="/movies" component={MovieSearchView} />
+        <Route exact path="/movies" component={MovieSearchView} />
+        <Route path="/movies/:movieId" component={MovieDetailsView} />
         <Route path="/survey" component={SurveyView} />
         <Route path="/upcoming" component={UpcomingMovieView} />
         <Route exact path="/chatrooms" component={ChatRoomView} />
