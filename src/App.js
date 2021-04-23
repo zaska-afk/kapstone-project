@@ -33,8 +33,10 @@ function App() {
         <Route exact path="/" component={SignInView} />
         <Route path="/home" component={HomeView} />
 
+
         <Route exact path="/profile/:_id" component={ProfileView} />
         <Route path="/profile/:_id/edit" component={EditProfile} />
+
 
         <Route path="/buddies" component={MovieBuddiesView} />
         <Route exact path="/movies" component={MovieSearchView} />

@@ -1,5 +1,7 @@
 import React from "react";
+
 import { Image } from "react-bootstrap";
+
 
 import NavBar from "../components/NavBar";
 import Profile from "../components/Profile";
@@ -9,6 +11,7 @@ function ProfileView() {
   return (
     <>
       <NavBar />
+
       <Image
         src={PopcornContainers}
         style={{
@@ -23,6 +26,7 @@ function ProfileView() {
       />
       <h1 className="home-header">Profile Page</h1>
       <Profile />
+
     </>
   );
 }
