@@ -14,7 +14,7 @@ function NewMessage(props) {
 
   const handleMessage = async (e, id) => {
     e.preventDefault();
-    await newMessageRequest(user.username, location, user._id, formData);
+    await newMessageRequest(user.username, location, formData);
     const messageData = await msgRequest(location);
     console.log(messageData);
     setFormData("");
@@ -22,7 +22,7 @@ function NewMessage(props) {
   return (
     <>
       <Form id="login-form" onSubmit={handleMessage}>
-        <Form.Group controlId="exampleForm.ControlTextarea1">
+        <Form.Group>
           <Form.Label className="button" htmlFor="displayName">
             <b>Username:</b> {user.username}
           </Form.Label>

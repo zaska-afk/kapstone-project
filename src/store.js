@@ -102,6 +102,7 @@ const useStore = create(
     // },
 
     msgRequest: (location) => {
+      set({ messages: [] });
       return fetch(baseURL + location, {})
         .then((res) => res.json())
         .then((data) => {
