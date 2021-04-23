@@ -122,13 +122,7 @@ const useStore = create(
           text,
           username,
         }),
-      })
-        .then((res) => res.json())
-        .then((message) =>
-          set({
-            messages: message,
-          })
-        );
+      }).then((res) => res.json());
     },
 
     deleteChat: (messageId, location) => {

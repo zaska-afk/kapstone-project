@@ -29,14 +29,7 @@ function MovieBuddies(props) {
           Username: {props.user.username}
         </Card.Header>
         <Card.Body>
-          <Button
-            size="sm"
-            onClick={() => history.push(`/profile/${props.user._id}`)}
-            variant="warning"
-          >
-            See Buddie Profile
-          </Button>
-          <Button size="sm" onClick={addMovieBuddie} variant="dark">
+          <Button size="sm" onClick={addMovieBuddie} variant="warning">
             Add Buddie
           </Button>
         </Card.Body>

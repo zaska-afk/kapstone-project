@@ -12,7 +12,7 @@ function NewMessage(props) {
 
   const location = history.location.pathname.slice(1);
 
-  const handleMessage = async (e, id) => {
+  const handleMessage = async (e) => {
     e.preventDefault();
     await newMessageRequest(user.username, location, formData);
     const messageData = await msgRequest(location);
