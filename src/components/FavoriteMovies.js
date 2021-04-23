@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect } from "react";
 import { Image, Popover, OverlayTrigger, Button } from "react-bootstrap";
 
 import useStore from "../store";
@@ -8,10 +8,10 @@ function FavoriteMovies() {
   const movies = useStore((state) => state.popularMovies);
   const setLikedMovies = useStore((state) => state.setLikedMovies);
   const user = useStore((state) => state.user.user);
-  //const [show, setShow] = useState(false);
-  //const [favMovies, setFavMovies] = useState([]);
-  //const [target, setTarget] = useState(null);
-  //const ref = useRef(null);
+  // const [show, setShow] = useState(false);
+  // const [favMovies, setFavMovies] = useState([]);
+  // const [target, setTarget] = useState(null);
+  // const ref = useRef(null);
   useEffect(() => {
     fetchPopular();
   }, [fetchPopular]);

@@ -20,7 +20,9 @@ function SciFiChatView() {
         <Row>
           <Col>
             <Card className="chat-view-cards">
-              <Messages />
+              <div className="area">
+                <Messages />
+              </div>
             </Card>
             <Card className="newchat-view-cards">
               <CreateMessage />
