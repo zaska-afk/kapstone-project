@@ -3,6 +3,7 @@ import { devtools } from "zustand/middleware";
 
 const movieURL = "https://api.themoviedb.org/";
 const baseURL = "https://moviebuddies.glitch.me/";
+// const baseURL = "https://socialapp-api.herokuapp.com/";
 const apiKey = "api_key=6645eb422ef966984e8f1eade6202ea0";
 
 const fetchPage = async (pageNumber) => {
@@ -63,14 +64,6 @@ const useStore = create(
     getUserRequest: (username) => {
       return fetch(baseURL + "users/" + username).then((res) => res.json());
     },
-    msgRequest: (location) => {
-      return fetch(baseURL + location, {})
-        .then((res) => res.json())
-        .then((data) => {
-          set({ messages: data.messages });
-        });
-    },
-    messages: [],
 
     fetchAllUsers: async () => {
       fetch(baseURL + "users")
@@ -104,14 +97,23 @@ const useStore = create(
         .then((user) => set({ user: user }));
     },
 
-    singleMessage: () => {
-      return fetch(baseURL + "messages/1", {}).then((res) => res.json());
+    // singleMessage: () => {
+    //   return fetch(baseURL + "messages/1", {}).then((res) => res.json());
+    // },
+
+    msgRequest: (location) => {
+      return fetch(baseURL + location, {})
+        .then((res) => res.json())
+        .then((data) => {
+          set({ messages: data.Comments });
+        });
     },
-    newMessageRequest: (username, location, token, text) => {
+    messages: [],
+
+    newMessageRequest: (username, location, text) => {
       return fetch(baseURL + location, {
         method: "POST",
         headers: {
-          Authorization: "Bearer " + token,
           "Content-Type": "application/json",
         },
 
@@ -122,17 +124,16 @@ const useStore = create(
       })
         .then((res) => res.json())
         .then((message) =>
-          set((state) => {
-            messages: state.messages.push(message);
+          set({
+            messages: message,
           })
         );
     },
 
-    deleteChat: (token, messageId) => {
-      return fetch(baseURL + "messages/" + messageId, {
+    deleteChat: (messageId, location) => {
+      return fetch(baseURL + location + "/" + messageId, {
         method: "DELETE",
         headers: {
-          Authorization: "Bearer " + token,
           "Content-Type": "application/json",
         },
       }).then((res) => res.json());
@@ -268,17 +269,23 @@ const useStore = create(
     },
     popularMovies: {},
 
-    updateUser: (username, password, Email, token) =>
-      fetch(`${baseURL}users/${username}`, {
+    updateUser: (id, username, email) =>
+      fetch(`${baseURL}users/${id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          ...{ username, Email },
-          ...(password ? { password } : {}),
+          username,
+          email,
         }),
-      }).then((res) => res.json()),
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          console.log(res);
+          set({ user: res });
+          return res;
+        }),
 
     setLikedMovies: (movie, id) => {
       fetch(baseURL + `users/${id}/likedmovies`, {

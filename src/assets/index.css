@@ -237,8 +237,8 @@ code {
   outline: 8px solid black;
   align-items: center;
   text-align: center;
-  max-width: 350px;
-  max-height: 450px;
+  width: 350px;
+  height: 450px;
   margin-bottom: 30px;
   margin-top: 40px;
   margin-left: 30px;
@@ -377,6 +377,22 @@ code {
     rgba(252, 176, 69, 1) 100%
   );
 }
+.profile-card2 {
+  display: flex;
+  max-width: 450px;
+  height: 375px;
+  align-items: center;
+  outline: 8px solid black;
+  text-align: center;
+  padding-bottom: 40px;
+  margin: 5px;
+  background-image: linear-gradient(
+    90deg,
+    rgba(131, 58, 180, 1) 0%,
+    rgba(253, 29, 29, 1) 50%,
+    rgba(252, 176, 69, 1) 100%
+  );
+}
 
 .buddies-deck {
   display: flex;
@@ -439,12 +455,11 @@ code {
 
 .message-card {
   display: flex;
-  padding: 5px;
   outline: 4px solid black;
   background-color: white;
   text-align: center;
   width: 250px;
-  max-height: 100px;
+  max-height: 200px;
 }
 
 .chat-videos {
@@ -460,7 +475,7 @@ code {
 
 .area {
   background-color: white;
-  height: 400px;
+  height: 450px;
   overflow: auto;
 }
 

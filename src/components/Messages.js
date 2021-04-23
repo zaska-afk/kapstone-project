@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Button, Card } from "react-bootstrap";
+import { Button, Card, CardDeck } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 
 import useStore from "../store";
@@ -11,46 +11,47 @@ function Messages(props) {
   const messages = useStore((state) => state.messages);
   const history = useHistory();
 
-  // useEffect(
-  //   (e) => {
-  //     msgRequest();
-  //   },
-  //   [msgRequest]
-  // );
-  useEffect(
-    (e) => {
-      console.log(history.location);
-      const location = history.location.pathname;
-      msgRequest(location);
-    },
-    [msgRequest, messages, history.location]
-  );
-  const handleDelete = async (e) => {
-    e.preventDefault();
-    await deleteChat(props.id, user.token).then(() => {
-      props.message([]);
-    });
+  const location = history.location.pathname.slice(1);
 
-    return (
-      <div>
-        {messages &&
-          messages.map((message) => {
-            return (
-              <>
-                <Card style={{ width: "18rem" }}>
+  useEffect((e) => {
+    console.log(history.location);
+    msgRequest(location);
+  }, []);
+
+  const handleDelete = async (e, id) => {
+    e.preventDefault();
+    await deleteChat(id, location).then((res) => {
+      console.log(res);
+    });
+  };
+
+  return (
+    <div>
+      {messages &&
+        messages.map((message) => {
+          return (
+            <>
+              <CardDeck>
+                <Card className="message-card">
                   <Card.Body>
-                    <Card.Title>{message.Comments.username}</Card.Title>
-                    <Card.Text>{message.Comments.text}</Card.Text>
-                    {/* <Button onClick={handleDelete} size="lg" variant="warning"> */}
-                    {/* Delete Message
-                    </Button> */}
+                    <Card.Title>{message.username}</Card.Title>
+                    <Card.Text>{message.text}</Card.Text>
+                    <Button
+                      value="Delete"
+                      onClick={(e) => handleDelete(e, message._id)}
+                      size="sm"
+                      variant="warning"
+                    >
+                      Delete Chat
+                    </Button>
                   </Card.Body>
                 </Card>
-              </>
-            );
-          })}
-      </div>
-    );
-  };
+              </CardDeck>
+            </>
+          );
+        })}
+    </div>
+  );
 }
+
 export default Messages;

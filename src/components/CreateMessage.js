@@ -10,12 +10,13 @@ function NewMessage(props) {
   const [formData, setFormData] = useState();
   const history = useHistory();
 
-  const handleMessage = async (e) => {
+  const location = history.location.pathname.slice(1);
+
+  const handleMessage = async (e, id) => {
     e.preventDefault();
-    const location = history.location.pathname.slice(1);
     await newMessageRequest(user.username, location, user._id, formData);
     const messageData = await msgRequest(location);
-
+    console.log(messageData);
     setFormData("");
   };
   return (

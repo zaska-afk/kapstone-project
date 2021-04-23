@@ -1,22 +1,17 @@
 import React, { useEffect } from "react";
-import useStore from "../store";
+import { Link } from "react-router-dom";
 import { Card, Button, CardDeck } from "react-bootstrap";
-import EditProfile from "./EditProfile";
+
+import useStore from "../store";
 
 function Profile(props) {
   const user = useStore((state) => state.user.user);
   const fetchMovieBuddies = useStore((state) => state.fetchMovieBuddies);
   const movieBuddies = user.movieBuddies;
-  console.log(movieBuddies);
 
   useEffect(() => {
     fetchMovieBuddies(user._id);
   }, [fetchMovieBuddies, user._id]);
-
-  const handleEditProfile = async (e) => {
-    e.preventDefault();
-    await EditProfile();
-  };
 
   return (
     <div>
@@ -67,9 +62,9 @@ function Profile(props) {
                 </Card>
               </CardDeck>
               <br />
-              <Button variant="warning" onClick={handleEditProfile}>
-                Edit Profile
-              </Button>
+              <Link to={`/profile/${user._id}/edit`}>
+                <Button variant="warning">Edit Profile</Button>
+              </Link>
             </Card.Body>
           </Card>
         </CardDeck>

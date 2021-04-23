@@ -32,7 +32,9 @@ function ComedyChatView() {
         <Row>
           <Col>
             <Card className="chat-view-cards">
-              <div className="area">{/* <Messages /> */}</div>
+              <div className="area">
+                <Messages />
+              </div>
             </Card>
             <Card className="newchat-view-cards">
               <CreateMessage />
